@@ -16,7 +16,7 @@
 		backdrop-filter: blur(5px);
 		position: absolute;
 		top: 40px;
-		height: calc(100% - 40px);
+		height: calc(100% - 50px);
 		padding: 15px;
 		border-left: 1px solid #fff;
 		transition: right 0.25s ease;
