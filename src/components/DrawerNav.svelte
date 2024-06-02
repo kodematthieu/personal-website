@@ -15,7 +15,7 @@
 		z-index: 2;
 		backdrop-filter: blur(5px);
 		position: absolute;
-		top: 40px;
+		top: 50px;
 		height: calc(100% - 50px);
 		padding: 15px;
 		border-left: 1px solid #fff;

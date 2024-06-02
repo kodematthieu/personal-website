@@ -43,12 +43,15 @@ const sections = [
 		}
 	}
 	main {
-		height: calc(100dvh - 40px);
+		height: calc(100dvh - 50px);
 		scroll-snap-type: y mandatory;
 		overflow-y: scroll;
 		position: relative;
 		&::-webkit-scrollbar {
 			display: none;
+		}
+		@media (min-width: 600px) {
+			height: calc(100dvh - 50px);
 		}
 	}
 </style>

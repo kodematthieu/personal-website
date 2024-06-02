@@ -12,7 +12,7 @@
 	let tiles = [];
 
 	onMount(() => {
-		random = new Random(MersenneTwister19937.seed("kodemat"));
+		random = new Random(MersenneTwister19937.seed("125445887"));
 		parentStyle = getComputedStyle(document.querySelector("main"));
 		accent = parentStyle.getPropertyValue("--accentColor");
 		two = new Two({
@@ -38,7 +38,7 @@
 			for (let i = 0; i < cols; i++) {
 				let x = i * width;
 				const y = j * height * 0.75;
-				const prob = (y / two.height) * 3;
+				const prob = (y / two.height) * 4.5;
 				if (Math.round(random.real(0, prob)) === 0) continue;
 				if (j % 2 === 0) {
 					x += offX;
