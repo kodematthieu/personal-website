@@ -14,7 +14,7 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://kodemat.netlify.app',
   integrations: [mdx(), sitemap(), svelte(), tailwind(), playformCompress(), playformFormat(), playformInline(), icon(), robotsTxt()],
   output: "server",
   adapter: netlify()
