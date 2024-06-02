@@ -1,4 +1,5 @@
 # Portfolio Website
+[![Netlify Status](https://api.netlify.com/api/v1/badges/39c1d562-9722-4071-af08-c311d1752892/deploy-status)](https://app.netlify.com/sites/kodemat/deploys)
 
 Welcome to the source code repository for my personal portfolio website. This site showcases my projects, skills, and background. It is built using Astro.js and Svelte.
 
