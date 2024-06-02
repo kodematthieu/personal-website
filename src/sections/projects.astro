@@ -1,0 +1,105 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section id="projects">
+	<h1>Projects</h1>
+	<div class="content">
+		<a
+			href="https://github.com/kodematthieu/start"
+			target="_blank"
+			class="card styleless"
+			rel="noopener noreferrer"
+		>
+			<div class="head">
+				<h2>Start: My Early Programming Journey</h2>
+				<Icon name="tabler:external-link" />
+			</div>
+			<p>
+				Explore my repository showcasing the humble beginnings of my
+				coding journey, featuring a collection of projects, experiments,
+				and learning exercises from ages 11 to 16.
+			</p>
+		</a>
+		<a
+			href="https://github.com/kodematthieu/TicTacToe"
+			target="_blank"
+			class="card styleless"
+			rel="noopener noreferrer"
+		>
+			<div class="head">
+				<h2>Tic-Tac-Toe in Rust</h2>
+				<Icon name="tabler:external-link" />
+			</div>
+			<p>
+				A recreation of the classic Tic-Tac-Toe game using Rust,
+				demonstrating my skills in systems programming and game
+				development.
+			</p>
+		</a>
+		<a
+			href="https://github.com/kodematthieu/personal-website"
+			target="_blank"
+			class="card styleless"
+			rel="noopener noreferrer"
+		>
+			<div class="head">
+				<h2>Personal Website</h2>
+				<Icon name="tabler:external-link" />
+			</div>
+			<p>
+				The source code for my personal website, showcasing my projects,
+				skills, and background. Built with Svelte and Astro.
+			</p>
+		</a>
+	</div>
+</section>
+<style lang="scss">
+	section {
+		padding: 40px;
+	}
+	h1 {
+		font-size: 16px;
+		text-align: left;
+		text-transform: uppercase;
+		font-family: "Outfit";
+	}
+	.content {
+		margin-top: 30px;
+	}
+	.card {
+		cursor: pointer;
+		padding: 10px;
+		border: 1.5px solid var(--accentColor);
+		display: block;
+		border-radius: 7.5px;
+		transition: background-color 0.25s ease;
+		&:hover {
+			background-color: var(--accentColor);
+		}
+		> .head {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+			justify-content: space-between;
+			> h2 {
+				font-size: 16px;
+			}
+			> svg {
+				font-size: 30px;
+				text-align: center;
+			}
+		}
+		> p {
+			font-size: 12px;
+			text-align: left;
+			color: #aaa;
+		}
+		&:hover {
+			background-color: var(--accentColor);
+		}
+		&:not(:nth-child(1)) {
+			margin-top: 10px;
+		}
+	}
+</style>

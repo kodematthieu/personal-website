@@ -1,0 +1,14 @@
+body,
+html {
+	position: relative;
+	overflow: hidden;
+}
+
+section {
+	scroll-snap-align: start;
+	height: 100%;
+}
+
+main::-webkit-scrollbar {
+	display: none;
+}
