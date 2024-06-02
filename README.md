@@ -39,3 +39,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [ ] Dynamic projects section (searches my GitHub and adds repositories that have `.github/portfolio.toml` file)
 - [ ] Add blog site
 - [ ] Add apps site
+
+---
+
+**Current Development Time:** 8 days
