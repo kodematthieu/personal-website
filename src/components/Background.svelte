@@ -1,5 +1,4 @@
 <script>
-	import Hexagon from "@tabler/icons-svelte/IconHexagon.svelte";
 	import { onMount } from "svelte";
 	import Two from "two.js";
 	import { Random, MersenneTwister19937 } from "random-js";
