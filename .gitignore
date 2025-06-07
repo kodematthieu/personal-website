@@ -24,3 +24,7 @@ vite.config.ts.timestamp-*
 
 # Paraglide
 src/lib/paraglide
+
+# Gemini-specific ignores
+project_snapshot.txt
+packer.js
