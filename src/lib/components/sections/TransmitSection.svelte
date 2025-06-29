@@ -59,8 +59,8 @@
 					console.error('Server action error:', result.error);
 				}
 
-				// Logic to hide the general banner after 5 seconds
-				if (result.type !== 'failure') {
+				// Logic to hide the banner after 5 seconds
+				if (formResult) {
 					setTimeout(() => {
 						formResult = null;
 					}, 5000);

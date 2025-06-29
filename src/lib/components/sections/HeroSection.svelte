@@ -13,14 +13,7 @@
 		'conceptual thinker'
 	];
 
-	function scrollToProjects() {
-		const constructsSection = document.getElementById('constructs');
-		if (constructsSection) {
-			constructsSection.scrollIntoView({ behavior: 'smooth' });
-		} else {
-			console.warn("Scroll target '#constructs' not found.");
-		}
-	}
+	
 
 	onMount(() => {
 		if (nameTextElem) {
@@ -54,7 +47,7 @@
 		</p>
 		<div class="nexus-buttons">
 			<Button href="#transmit">// Initiate Dialogue //</Button>
-			<Button href="#constructs" onclick={scrollToProjects}>// Explore Constructs //</Button>
+			<Button href="#constructs">// Explore Constructs //</Button>
 		</div>
 	</div>
 </section>
@@ -79,71 +72,72 @@
 		transform: translate(-50%, -50%);
 		width: 250px;
 		height: 250px;
-		background-color: var(--color-bg-dark);
-		border: 2px solid var(--color-purple-primary);
-		box-shadow:
-			0 0 30px var(--color-purple-light),
-			inset 0 0 20px var(--color-purple-dark);
+		background: radial-gradient(circle, #000 10%, #111 30%, var(--color-bg-dark) 70%);
 		border-radius: 50%;
-		animation: core-pulse 3s infinite alternate ease-in-out;
+		box-shadow:
+			0 0 15px 5px rgba(0, 0, 0, 0.8),
+			inset 0 0 20px 10px #000;
+		animation: core-swirl 15s linear infinite;
 		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.synthesis-core::before,
 	.synthesis-core::after {
 		content: '';
 		position: absolute;
-		background-color: var(--color-purple-primary);
 		border-radius: 50%;
-		opacity: 0.7;
-		animation: data-stream 2s infinite ease-out;
+		z-index: 1;
 	}
 
+	/* Photon Ring */
 	.synthesis-core::before {
-		width: 10px;
-		height: 10px;
-		top: 20%;
-		left: 80%;
-		transform: translate(-50%, -50%);
-		animation-delay: 0s;
+		width: 110%;
+		height: 110%;
+		border: 2px solid var(--color-cyan-teal-accent);
+		opacity: 0.8;
+		animation: photon-ring-pulse 4s infinite alternate ease-in-out;
 	}
 
+	/* Accretion Disk */
 	.synthesis-core::after {
-		width: 8px;
-		height: 8px;
-		top: 70%;
-		left: 30%;
-		transform: translate(-50%, -50%);
-		animation-delay: 1s;
+		width: 150%;
+		height: 150%;
+		border: 1px dashed var(--color-deep-indigo-light);
+		opacity: 0.4;
+		animation: accretion-disk-spin 8s linear infinite;
 	}
 
-	@keyframes core-pulse {
+	@keyframes core-swirl {
 		from {
-			box-shadow:
-				0 0 20px var(--color-purple-light),
-				inset 0 0 15px var(--color-purple-dark);
-			transform: translate(-50%, -50%) scale(1);
+			transform: translate(-50%, -50%) rotate(0deg);
 		}
 		to {
-			box-shadow:
-				0 0 50px var(--color-purple-light),
-				inset 0 0 30px var(--color-purple-dark);
-			transform: translate(-50%, -50%) scale(1.02);
+			transform: translate(-50%, -50%) rotate(360deg);
 		}
 	}
 
-	@keyframes data-stream {
-		0% {
-			transform: scale(0.5);
-			opacity: 0.5;
+	@keyframes photon-ring-pulse {
+		from {
+			box-shadow: 0 0 10px var(--color-cyan-teal-accent);
+			transform: scale(1);
+			opacity: 0.6;
 		}
-		50% {
-			transform: scale(1.2);
-			opacity: 1;
+		to {
+			box-shadow: 0 0 25px var(--color-cyan-teal-accent);
+			transform: scale(1.03);
+			opacity: 0.9;
 		}
-		100% {
-			transform: scale(0.5);
-			opacity: 0.5;
+	}
+
+	@keyframes accretion-disk-spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(-360deg);
 		}
 	}
 

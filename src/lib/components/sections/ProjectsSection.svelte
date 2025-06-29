@@ -49,11 +49,12 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
 		gap: 2.5rem;
+		justify-items: center; /* Center cards in the grid */
 	}
 
 	.project-card {
-		background-color: var(--color-core-dark-bg, #111111);
-		border: 1px solid rgba(var(--color-purple-primary-rgb), 0.3); /* Subtle purple border */
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-primary-container);
 		border-radius: 8px;
 		overflow: hidden;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -63,29 +64,29 @@
 			border-color 0.3s ease;
 		display: flex;
 		flex-direction: column;
+		max-width: 350px; /* Prevent cards from becoming too wide */
+		width: 100%; /* Ensure card fills its column */
 	}
 
 	.project-card:hover {
 		transform: translateY(-8px); /* Lift effect */
-		box-shadow:
-			0 8px 30px rgba(0, 0, 0, 0.5),
-			0 0 25px rgba(var(--color-purple-light), 0.4); /* Enhanced glow */
-		border-color: var(--color-purple-light); /* Highlight border */
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+		border-color: var(--color-primary);
 	}
 
 	.project-image {
 		width: 100%;
-		height: 200px;
-		background-color: var(--color-bg-dark); /* Placeholder color */
+		aspect-ratio: 16 / 9;
+		background-color: var(--color-bg-dark);
 		align-items: center;
 		justify-content: center;
-		display: flex; /* Still flex for centering the text overlay */
+		display: flex;
 		color: var(--color-text-dim);
 		font-family: var(--code-font, 'Space Mono', monospace);
-		border-bottom: 1px solid rgba(var(--color-purple-primary-rgb), 0.5);
+		border-bottom: 1px solid var(--color-primary-container);
 		font-size: 0.9rem;
-		position: relative; /* For ::before and text positioning */
-		overflow: hidden; /* Important for containing ::before */
+		position: relative;
+		overflow: hidden;
 	}
 
 	.project-image::before {
@@ -95,31 +96,31 @@
 		height: 100%;
 		background: linear-gradient(
 			45deg,
-			rgba(var(--color-purple-primary-rgb), 0.2),
-			rgba(var(--color-teal-accent), 0.1)
+			rgba(var(--color-deep-indigo-primary-rgb), 0.2),
+			rgba(var(--color-cyan-teal-accent-rgb), 0.1)
 		);
-		opacity: 0.8; /* Make it more visible */
-		z-index: 0; /* Below the text, acting as a background layer */
+		opacity: 0.8;
+		z-index: 0;
 	}
 
 	.project-image .project-image-placeholder-text {
 		position: relative;
-		z-index: 1; /* Ensure text is above the pseudo-element background */
-		text-shadow: 0 0 8px var(--color-bg-dark); /* Add shadow for readability */
-		color: var(--color-text-light); /* Make text lighter for better contrast */
-		font-size: 1.2rem; /* Ensure consistent size */
-		white-space: nowrap; /* Prevent text wrapping */
+		z-index: 1;
+		text-shadow: 0 0 8px var(--color-bg-dark);
+		color: var(--color-text-light);
+		font-size: 1.2rem;
+		white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis; /* Add ellipsis if text is too long */
+		text-overflow: ellipsis;
 	}
 
 	.project-content {
 		padding: 1.75rem;
-		flex-grow: 1; /* Allows content to take available space */
+		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		text-align: left; /* Project text aligns left */
+		text-align: left;
 	}
 	.content-text-wrapper {
 		display: flex;
@@ -128,10 +129,10 @@
 	}
 
 	.project-content h3 {
-		color: var(--color-purple-light);
+		color: var(--color-primary);
 		margin-bottom: 0.5rem;
 		font-size: 1.5rem;
-		text-align: left; /* Override global center for h3 in cards */
+		text-align: left;
 		font-family: 'Space Mono', monospace;
 	}
 
@@ -139,13 +140,12 @@
 		color: var(--color-text-dim);
 		font-size: 0.95rem;
 		margin-bottom: 1rem;
-		flex-grow: 1;
 		font-family: 'Inter', sans-serif;
 	}
 	.project-tech {
 		font-family: 'Space Mono', monospace;
 		font-size: 0.85rem;
-		color: var(--color-purple-light);
+		color: var(--color-secondary);
 		word-spacing: 5px;
 	}
 
@@ -154,7 +154,7 @@
 		align-items: center;
 		gap: 8px;
 		margin-top: 1.5rem;
-		color: var(--color-purple-light);
+		color: var(--color-primary);
 		font-weight: 600;
 		align-self: flex-start;
 	}

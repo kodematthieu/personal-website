@@ -1,31 +1,34 @@
-<script module>
-  import { defineMeta } from '@storybook/addon-svelte-csf';
-  import Button from './Button.svelte';
-  import { fn } from '@storybook/test';
-
-  // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
-  const { Story } = defineMeta({
-    title: 'Example/Button',
-    component: Button,
-    tags: ['autodocs'],
-    argTypes: {
-      backgroundColor: { control: 'color' },
-      size: {
-        control: { type: 'select' },
-        options: ['small', 'medium', 'large'],
-      },
-    },
-    args: {
-      onClick: fn(),
-    }
-  });
+<script lang="ts">
+	import { Meta, Story, Template } from '@storybook/addon-svelte-csf';
+	import Button from '$lib/components/ui/Button.svelte';
 </script>
 
-<!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Primary" args={{ primary: true, label: 'Button' }} />
+<Meta
+	title="Example/Button"
+	component={Button}
+	argTypes={{
+		label: { control: 'text' },
+		href: { control: 'text' }
+	}}
+/>
 
-<Story name="Secondary" args={{ label: 'Button' }} />
+<Template let:args>
+	<Button {...args}>{args.label}</Button>
+</Template>
 
-<Story name="Large" args={{ size: 'large', label: 'Button' }} />
+<Story
+	name="Primary Button"
+	args={{
+		label: 'Click Me',
+		class: 'btn'
+	}}
+/>
 
-<Story name="Small" args={{ size: 'small', label: 'Button' }} />
+<Story
+	name="Link Button"
+	args={{
+		label: 'Go to Google',
+		href: 'https://google.com',
+		class: 'btn'
+	}}
+/>

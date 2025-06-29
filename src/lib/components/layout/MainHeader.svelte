@@ -52,7 +52,7 @@
 	.main-header {
 		background-color: var(--color-bg-dark-light);
 		padding: 1.5rem 0;
-		border-bottom: 1px solid rgba(var(--color-purple-primary-rgb), 0.2);
+		border-bottom: 1px solid var(--color-outline);
 		position: fixed;
 		top: 0;
 		z-index: 1000;

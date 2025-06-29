@@ -2,6 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { Resend } from 'resend';
 import { env } from '$env/dynamic/private';
 import { z } from 'zod';
+import DOMPurify from 'isomorphic-dompurify';
 
 // Initialize Resend with the API key from our environment variables
 const resend = new Resend(env.RESEND_API_KEY);
@@ -13,23 +14,6 @@ const ContactFormSchema = z.object({
 	email: z.string().email({ message: 'A valid email address is required.' }),
 	message: z.string().trim().min(1, { message: 'Message is required.' })
 });
-
-/**
- * A simple utility to escape HTML characters and preserve line breaks.
- * This prevents HTML injection by treating all input as plain text.
- * @param text The raw text input.
- * @returns Sanitized string safe for HTML embedding.
- */
-function escapeHtml(text: string): string {
-	return text
-		.replace(/&/g, '&#38;')
-		.replace(/</g, '&#60;')
-		.replace(/>/g, '&#62;')
-		.replace(/"/g, '&#34;')
-		.replace(/'/g, '&#39;')
-		.replace(/ /g, '&#32;')
-		.replace(/\n/g, '<br>'); // Preserve line breaks
-}
 
 export const actions = {
 	default: async ({ request }) => {
@@ -56,15 +40,21 @@ export const actions = {
 
 		const { name, email, message } = validationResult.data;
 
-		const sanitizedMessage = escapeHtml(message);
-		const sanitizedName = escapeHtml(name);
+		// Sanitize the message, preserving line breaks by converting them to <br> tags
+		// and allowing only <br> tags through the sanitizer.
+		const sanitizedMessage = DOMPurify.sanitize(message.replace(/\n/g, '<br>'), {
+			ALLOWED_TAGS: ['br']
+		});
+
+		// Sanitize the name to remove any potential HTML.
+		const sanitizedName = DOMPurify.sanitize(name);
 
 		try {
 			await resend.emails.send({
 				from: 'Domain Architect <onboarding@resend.dev>',
 				replyTo: email,
 				to: env.MY_EMAIL,
-				// FIX: Use the sanitized name in the subject line.
+				// Use the sanitized name in the subject line.
 				subject: `New Signal from The Synthesis Engine: ${sanitizedName}`,
 				html: `
                     <p><strong>From:</strong> ${sanitizedName} (${email})</p>

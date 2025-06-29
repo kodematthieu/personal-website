@@ -23,29 +23,30 @@
    GLOBAL DESIGN TOKENS (CSS VARIABLES)
    ========================================================================== */
 :root {
-	/* --- PALETTES --- */
-	--color-bg-dark: #0f0f1a;
-	--color-bg-dark-light: #1a1a2e;
-	--color-purple-primary: #9d00ff;
-	--color-purple-primary-rgb: 157, 0, 255;
-	--color-purple-light: #c700ff;
-	--color-purple-dark: #8a2be2;
-	--color-teal-accent: #00c7b1;
-	--color-text-light: #f0f0f0;
-	--color-text-dim: #a0a0a0;
-	--color-core-red: #ff0033;
+	/* --- PALETTES (Stealth Theme) --- */
+	--color-bg-dark: #0a0a10; /* Near-black, very dark blue */
+	--color-bg-dark-light: #1a1a24; /* Slightly lighter dark blue */
+	--color-deep-indigo-primary: #4c51bf; /* Rich, deep indigo */
+	--color-deep-indigo-primary-rgb: 76, 81, 191;
+	--color-deep-indigo-light: #667eea; /* Lighter indigo for highlights */
+	--color-deep-indigo-dark: #434190; /* Darker indigo for borders */
+	--color-cyan-teal-accent: #38b2ac; /* Vibrant, clean cyan-teal */
+	--color-text-light: #e2e8f0; /* Soft white/light gray */
+	--color-text-dim: #a0aec0; /* Dimmer, softer gray */
+	--color-core-red: #e53e3e; /* A slightly less harsh red */
 	--color-core-black: #000000;
 	--color-core-dark-bg: #111111;
-	--color-core-dark-red: #cc0029;
+	--color-core-dark-red: #c53030;
 
 	/* --- SEMANTIC MAPPINGS --- */
-	--color-primary: var(--color-purple-primary);
+	--color-primary: var(--color-deep-indigo-primary);
+	--color-primary-rgb: var(--color-deep-indigo-primary-rgb);
 	--color-on-primary: var(--color-text-light);
-	--color-primary-container: var(--color-purple-dark);
+	--color-primary-container: var(--color-deep-indigo-dark);
 	--color-on-primary-container: var(--color-text-light);
-	--color-secondary: var(--color-teal-accent);
+	--color-secondary: var(--color-cyan-teal-accent);
 	--color-on-secondary: var(--color-text-light);
-	--color-secondary-container: var(--color-teal-accent);
+	--color-secondary-container: var(--color-cyan-teal-accent);
 	--color-on-secondary-container: var(--color-text-light);
 	--color-background: var(--color-bg-dark);
 	--color-on-background: var(--color-text-light);
@@ -53,7 +54,7 @@
 	--color-on-surface: var(--color-text-light);
 	--color-surface-variant: var(--color-bg-dark-light);
 	--color-on-surface-variant: var(--color-text-dim);
-	--color-outline: rgba(var(--color-purple-primary), 0.2);
+	--color-outline: rgba(var(--color-deep-indigo-primary-rgb), 0.2);
 	--color-shadow: #000000;
 
 	/* --- GEOMETRY --- */
@@ -62,12 +63,12 @@
 
 /* --- STATE SHIFT: FROM ANALYSIS TO FLOW --- */
 body.debug-mode {
-	--color-purple-primary: var(--color-core-red);
-	--color-purple-light: var(--color-core-red);
-	--color-purple-dark: var(--color-core-dark-red);
+	--color-deep-indigo-primary: var(--color-core-red);
+	--color-deep-indigo-light: var(--color-core-red);
+	--color-deep-indigo-dark: var(--color-core-dark-red);
 	--color-bg-dark: var(--color-core-black);
 	--color-bg-dark-light: var(--color-core-dark-bg);
-	--color-teal-accent: var(--color-core-red);
+	--color-cyan-teal-accent: var(--color-core-red);
 }
 
 /* ==========================================================================
@@ -91,10 +92,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
-	cursor:
-		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4' fill='%23C700FF' opacity='0.7'/%3E%3Cpath d='M12 2L12 22M2 12L22 12' stroke='%239D00FF' stroke-width='1.5' stroke-linecap='round' stroke-dasharray='3 3'/%3E%3C/svg%3E")
-			12 12,
-		auto;
+	cursor: crosshair;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
@@ -130,7 +128,7 @@ a {
 	transition: color 0.3s ease;
 }
 a:hover {
-	color: var(--color-purple-light);
+	color: var(--color-deep-indigo-light);
 }
 
 img {
@@ -153,21 +151,11 @@ img {
 /* CORRECTED: The margin is now correctly set to margin-bottom only. */
 .section-heading {
 	font-size: 2.5rem;
-	color: var(--color-purple-light);
+	color: var(--color-deep-indigo-light);
 	text-align: center;
 	margin-bottom: 3rem;
-	text-shadow: 0 0 15px var(--color-purple-primary);
+	text-shadow: 0 0 8px rgba(var(--color-deep-indigo-light), 0.2);
 	letter-spacing: 2px;
-	animation: pulse-shadow 2s infinite alternate ease-in-out;
-}
-
-@keyframes pulse-shadow {
-	from {
-		text-shadow: 0 0 10px var(--color-purple-primary);
-	}
-	to {
-		text-shadow: 0 0 25px var(--color-purple-light);
-	}
 }
 
 /* Base style for sections used on the landing page */
@@ -179,8 +167,8 @@ section {
 
 section:nth-of-type(even) {
 	background-color: var(--color-bg-dark-light);
-	border-top: 1px solid rgba(var(--color-purple-primary-rgb), 0.5);
-	border-bottom: 1px solid rgba(var(--color-purple-primary-rgb), 0.5);
+	border-top: 1px solid rgba(var(--color-deep-indigo-primary-rgb), 0.5);
+	border-bottom: 1px solid rgba(var(--color-deep-indigo-primary-rgb), 0.5);
 	/* MODIFICATION: border-radius is removed from the base rule */
 }
 

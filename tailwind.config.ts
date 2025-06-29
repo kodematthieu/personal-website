@@ -24,25 +24,7 @@ export default {
 				'text-light': 'var(--color-text-light)',
 				'text-dim': 'var(--color-text-dim)'
 
-				// Keeping old aliases if needed for existing Tailwind classes, though they should be migrated
-				// primary: 'var(--color-purple-primary)',
-				// 'on-primary': 'var(--color-text-light)', // Assuming this maps best
-				// 'primary-container': 'var(--color-purple-dark)',
-				// 'on-primary-container': 'var(--color-text-light)',
-
-				// secondary: 'var(--color-teal-accent)',
-				// 'on-secondary': 'var(--color-text-light)',
-				// 'secondary-container': 'var(--color-teal-accent)', // Or a darker teal variant
-				// 'on-secondary-container': 'var(--color-text-light)',
-
-				// background: 'var(--color-bg-dark)',
-				// 'on-background': 'var(--color-text-light)',
-				// surface: 'var(--color-bg-dark-light)',
-				// 'on-surface': 'var(--color-text-light)',
-				// 'surface-variant': 'var(--color-bg-dark-light)', // Or a slightly different dark background
-				// 'on-surface-variant': 'var(--color-text-dim)',
-
-				// outline: 'rgba(var(--color-purple-primary), 0.2)', // Approximate if needed
+				
 			}
 		}
 	},

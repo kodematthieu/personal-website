@@ -90,7 +90,7 @@
 		z-index: 0;
 	}
 	.discipline-item:hover {
-		color: var(--color-bg-dark);
+		color: var(--color-on-primary);
 		transform: translateY(-3px);
 		box-shadow: 0 0 15px rgba(var(--color-purple-light), 0.5);
 	}
@@ -102,7 +102,7 @@
 		z-index: 1;
 	}
 	.discipline-category.soft-magic .discipline-item::before {
-		background: linear-gradient(45deg, var(--color-teal-accent), var(--color-purple-light));
+		background: linear-gradient(45deg, var(--color-cyan-teal-accent), var(--color-purple-light));
 	}
 
 	@media (min-width: 992px) {

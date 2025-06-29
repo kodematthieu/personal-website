@@ -7,7 +7,7 @@
 		children: Snippet;
 	};
 
-	let { href, children, ...attr } = $props<Props>();
+	let { href, children, ...attr }: Props = $props();
 </script>
 
 {#if href}
@@ -26,7 +26,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 0.8rem 2rem;
-		border: 2px solid var(--color-purple-primary);
+		border: 2px solid var(--color-primary);
 		background-color: transparent;
 		color: var(--color-text-light);
 		font-family: 'Space Mono', monospace;
@@ -48,14 +48,15 @@
 		left: -100%;
 		width: 100%;
 		height: 100%;
-		background-color: var(--color-purple-primary);
+		background-color: var(--color-primary);
 		transition: left 0.3s ease;
-		z-index: -1;
+		z-index: 1;
 	}
 
 	.btn:hover {
 		color: var(--color-on-primary);
-		box-shadow: 0 0 20px var(--color-purple-light);
+		border-color: var(--color-primary);
+		box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.6);
 	}
 
 	.btn:hover::before {

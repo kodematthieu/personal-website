@@ -15,7 +15,7 @@
 	.main-footer {
 		background-color: var(--color-bg-dark-light);
 		padding: 2rem 0;
-		border-top: 1px solid rgba(var(--color-purple-primary), 0.1);
+		border-top: 1px solid var(--color-outline);
 		text-align: center;
 		font-size: 0.9rem;
 		color: var(--color-text-dim);

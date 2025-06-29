@@ -16,7 +16,7 @@
 		overflow: hidden; /* Contains animations without creating scrollbars */
 		background: radial-gradient(
 			circle at center,
-			rgba(138, 43, 226, 0.1) 0%,
+			rgba(var(--color-deep-indigo-primary-rgb), 0.1) 0%,
 			rgba(15, 15, 26, 0.7) 70%
 		); /* Radial gradient now lives here */
 	}
@@ -39,15 +39,15 @@
 		background-image: linear-gradient(
 				to right,
 				transparent 1px,
-				var(--color-purple-primary) 1px,
-				var(--color-purple-primary) 2px,
+				var(--color-primary) 1px,
+				var(--color-primary) 2px,
 				transparent 2px
 			),
 			linear-gradient(
 				to bottom,
 				transparent 1px,
-				var(--color-purple-primary) 1px,
-				var(--color-purple-primary) 2px,
+				var(--color-primary) 1px,
+				var(--color-primary) 2px,
 				transparent 2px
 			);
 		background-size: 50px 50px;
@@ -58,15 +58,15 @@
 		background-image: linear-gradient(
 				to right,
 				transparent 1px,
-				var(--color-teal-accent) 1px,
-				var(--color-teal-accent) 2px,
+				var(--color-secondary) 1px,
+				var(--color-secondary) 2px,
 				transparent 2px
 			),
 			linear-gradient(
 				to bottom,
 				transparent 1px,
-				var(--color-teal-accent) 1px,
-				var(--color-teal-accent) 2px,
+				var(--color-secondary) 1px,
+				var(--color-secondary) 2px,
 				transparent 2px
 			);
 		background-size: 100px 100px;

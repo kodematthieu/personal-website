@@ -1,6 +1,6 @@
 <!-- src/routes/(nexus)/+layout.svelte -->
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 
 	import MainHeader from '$lib/components/layout/MainHeader.svelte';
 	import MainFooter from '$lib/components/layout/MainFooter.svelte';
@@ -23,7 +23,7 @@
 </script>
 
 <!-- Background components are part of the nexus layout -->
-<HexagonBackground seed={"SYSTEMATIC_SYNTHESIS_NEXUS"} />
+<HexagonBackground seed={'SYSTEMATIC_SYNTHESIS_NEXUS'} />
 <GridBackground />
 
 <!-- Render the layout components -->
