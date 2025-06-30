@@ -13,8 +13,6 @@
 		'conceptual thinker'
 	];
 
-	
-
 	onMount(() => {
 		if (nameTextElem) {
 			typedInstance = new Typed(nameTextElem, {

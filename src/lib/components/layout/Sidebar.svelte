@@ -3,13 +3,15 @@
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
-	// MODIFICATION: Use a callback prop instead of dispatching an event.
-	let { isOpen, onClose }: { isOpen: boolean; onClose: () => void } = $props();
+	// MODIFICATION: Accept activeSectionId to track active state
+	let {
+		isOpen,
+		onClose,
+		activeSectionId
+	}: { isOpen: boolean; onClose: () => void; activeSectionId: string } = $props();
 </script>
 
-// /src/lib/components/layout/Sidebar.svelte
 {#if isOpen}
-	<!-- MODIFICATION: Use a button for the overlay for better accessibility. -->
 	<button
 		class="sidebar-overlay"
 		onclick={onClose}
@@ -22,13 +24,14 @@
 			<ul>
 				{#each navigationLinks as link}
 					<li>
-						<!-- MODIFICATION: Use onclick and call the onClose prop. -->
-						<a href={link.href} onclick={onClose}>{link.label}</a>
+						<!-- MODIFICATION: Add active class based on activeSectionId -->
+						<a href={link.href} onclick={onClose} class:active={link.href === '#' + activeSectionId}
+							>{link.label}</a
+						>
 					</li>
 				{/each}
 			</ul>
 		</nav>
-		<!-- MODIFICATION: Use onclick and call the onClose prop. -->
 		<button class="close-button" onclick={onClose} aria-label="Close navigation menu">×</button>
 	</aside>
 {/if}
@@ -41,7 +44,6 @@
 		width: 100vw;
 		height: 100vh;
 		background-color: rgba(0, 0, 0, 0.7);
-		/* MODIFICATION: z-index lowered */
 		z-index: 998;
 		backdrop-filter: blur(4px);
 		border: none;
@@ -58,9 +60,7 @@
 		background-color: var(--color-bg-dark-light);
 		border-left: 1px solid var(--color-outline);
 		box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-		/* MODIFICATION: Add padding-top to clear the header */
 		padding: 6rem 2rem 4rem 2rem;
-		/* MODIFICATION: z-index lowered */
 		z-index: 999;
 		display: flex;
 		flex-direction: column;
@@ -76,6 +76,7 @@
 		gap: 1.5rem;
 	}
 
+	/* MODIFICATION: Base link style adapted for effects */
 	.sidebar-nav a {
 		font-family: 'Space Mono', monospace;
 		font-size: 1.3rem;
@@ -84,10 +85,65 @@
 		transition: color 0.2s ease;
 		display: block;
 		padding: 0.5rem 0;
+		position: relative;
 	}
 
-	.sidebar-nav a:hover {
-		color: var(--color-deep-indigo-light);
+	/* MODIFICATION: Bracket animation for HOVER on INACTIVE links */
+	.sidebar-nav a:not(.active):hover {
+		color: var(--color-text-light);
+	}
+	.sidebar-nav a:not(.active)::before,
+	.sidebar-nav a:not(.active)::after {
+		content: '[';
+		position: absolute;
+		top: 50%;
+		font-weight: bold;
+		color: var(--color-cyan-teal-accent);
+		opacity: 0;
+		transform: translateY(-50%) scale(0.5);
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+	}
+	.sidebar-nav a:not(.active)::before {
+		content: '[';
+		left: -15px;
+	}
+	.sidebar-nav a:not(.active)::after {
+		content: ']';
+		right: -15px;
+	}
+	.sidebar-nav a:not(.active):hover::before,
+	.sidebar-nav a:not(.active):hover::after {
+		opacity: 1;
+		transform: translateY(-50%) scale(1);
+	}
+
+	/* MODIFICATION: "Target Lock" corners for the ACTIVE link */
+	.sidebar-nav a.active {
+		color: var(--color-text-light);
+		text-shadow: 0 0 8px var(--color-cyan-teal-accent);
+	}
+	.sidebar-nav a.active::before,
+	.sidebar-nav a.active::after {
+		content: '';
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		opacity: 1;
+		transition: all 0.3s ease;
+	}
+	.sidebar-nav a.active::before {
+		top: 2px;
+		left: -10px;
+		border-top: 2px solid var(--color-cyan-teal-accent);
+		border-left: 2px solid var(--color-cyan-teal-accent);
+	}
+	.sidebar-nav a.active::after {
+		bottom: 2px;
+		right: -10px;
+		border-bottom: 2px solid var(--color-cyan-teal-accent);
+		border-right: 2px solid var(--color-cyan-teal-accent);
 	}
 
 	.close-button {

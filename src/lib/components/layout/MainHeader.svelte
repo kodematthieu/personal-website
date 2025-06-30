@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { navigationLinks } from '$lib/navigation';
 
-	// MODIFICATION: Accept isSidebarOpen state prop
-	let { onToggle, isSidebarOpen }: { onToggle: () => void; isSidebarOpen: boolean } = $props();
+	// MODIFICATION: Accept isSidebarOpen, activeSectionId, and onToggle props
+	let {
+		onToggle,
+		isSidebarOpen,
+		activeSectionId
+	}: { onToggle: () => void; isSidebarOpen: boolean; activeSectionId: string } = $props();
 </script>
 
 // /src/lib/components/layout/MainHeader.svelte
@@ -41,12 +45,13 @@
 		<nav class="main-nav">
 			<ul>
 				{#each navigationLinks as link}
-					<li><a href={link.href}>{link.label}</a></li>
+					<li>
+						<a href={link.href} class:active={link.href === '#' + activeSectionId}>{link.label}</a>
+					</li>
 				{/each}
 			</ul>
 		</nav>
 
-		<!-- MODIFICATION: Add class directive for open state -->
 		<button
 			class="hamburger-button"
 			class:is-open={isSidebarOpen}
@@ -79,35 +84,32 @@
 	}
 
 	.logo {
-		/* Define the base colors for the logo in "Analysis Mode" */
-		--logo-major-ray-color: var(--color-purple-primary);
+		--logo-major-ray-color: var(--color-deep-indigo-primary);
 		--logo-minor-ray-color: var(--color-core-red);
-		--logo-core-color-a: var(--color-text-light); /* White */
-		--logo-core-color-b: var(--color-core-black); /* Black */
-
+		--logo-core-color-a: var(--color-text-light);
+		--logo-core-color-b: var(--color-core-black);
 		font-family: 'Space Mono', monospace;
 		font-size: 1.8rem;
-		color: var(--color-purple-light);
-		text-shadow: 0 0 10px var(--color-purple-primary);
+		color: var(--color-deep-indigo-light);
+		text-shadow: 0 0 10px var(--color-deep-indigo-primary);
 		letter-spacing: 1px;
 		display: flex;
 		align-items: center;
 		animation: pulse-logo-text 3s infinite alternate ease-in-out;
 		transition:
 			color 0.3s ease,
-			text-shadow 0.3s ease; /* Smooth color transition for state shift */
+			text-shadow 0.3s ease;
 	}
 
-	/* MODIFICATION: Style the tagline to be subordinate to the main logo text */
 	.logo-tagline {
-		display: none; /* Hidden on mobile by default */
-		font-size: 1.3rem; /* Reduced font size */
-		font-weight: 400; /* Lighter weight */
+		display: none;
+		font-size: 1.3rem;
+		font-weight: 400;
 		color: var(--color-text-dim);
 		margin-left: 0.75em;
-		letter-spacing: normal; /* Override parent styles */
-		text-shadow: none; /* Override parent styles */
-		animation: none; /* Override parent styles */
+		letter-spacing: normal;
+		text-shadow: none;
+		animation: none;
 		vertical-align: middle;
 	}
 
@@ -116,16 +118,14 @@
 		width: 32px;
 		height: 32px;
 		animation: rotate-logo 20s infinite linear;
-		transition: filter 0.3s ease; /* For potential glow changes */
+		transition: filter 0.3s ease;
 	}
 
 	.logo svg .logo-core {
-		/* Apply the new instant-switch animation */
-		animation: core-pulse-color 4s infinite linear; /* Use 'linear' for crisp changes */
-		transition: fill 0.3s ease; /* Keep for general fill changes if any */
+		animation: core-pulse-color 4s infinite linear;
+		transition: fill 0.3s ease;
 	}
 
-	/* Define the animations */
 	@keyframes rotate-logo {
 		from {
 			transform: rotate(0deg);
@@ -135,42 +135,34 @@
 		}
 	}
 
-	/* NEW: Instant switch for core color */
 	@keyframes core-pulse-color {
-		0% {
-			fill: var(--logo-core-color-a);
-		} /* Start with white */
+		0%,
 		49% {
 			fill: var(--logo-core-color-a);
-		} /* Hold white until almost 50% */
-		50% {
-			fill: var(--logo-core-color-b);
-		} /* Instantly switch to black */
+		}
+		50%,
 		99% {
 			fill: var(--logo-core-color-b);
-		} /* Hold black until almost 100% */
+		}
 		100% {
 			fill: var(--logo-core-color-a);
-		} /* Instantly switch back to white */
+		}
 	}
 
 	@keyframes pulse-logo-text {
 		0% {
-			text-shadow: 0 0 5px var(--color-purple-primary);
+			text-shadow: 0 0 5px var(--color-deep-indigo-primary);
 		}
 		50% {
-			text-shadow: 0 0 20px var(--color-purple-light);
+			text-shadow: 0 0 20px var(--color-deep-indigo-light);
 		}
 		100% {
-			text-shadow: 0 0 5px var(--color-purple-primary);
+			text-shadow: 0 0 5px var(--color-deep-indigo-primary);
 		}
 	}
 
-	/* STATE SHIFT: Override logo colors when in Flow State */
 	:global(body.debug-mode) .logo {
 		--logo-major-ray-color: var(--color-core-red);
-		/* Minor rays are already red, so no change needed, but could be specified */
-		/* --logo-minor-ray-color: var(--color-core-red); */
 	}
 
 	/* --- Navigation Styles --- */
@@ -179,36 +171,77 @@
 		display: flex;
 	}
 	.main-nav li {
-		margin-left: 2.5rem;
+		margin-left: 1.5rem;
 	}
 	.main-nav a {
 		font-family: 'Space Mono', monospace;
-		font-size: 1.1rem;
 		color: var(--color-text-dim);
 		position: relative;
-		padding-bottom: 5px;
-		transition: color 0.3s ease;
-	}
-	.main-nav a::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 0;
-		height: 2px;
-		background-color: var(--color-purple-primary);
-		transition: width 0.3s ease;
-	}
-	.main-nav a:hover {
-		color: var(--color-purple-light);
-	}
-	.main-nav a:hover::after {
-		width: 100%;
+		padding: 5px 10px;
+		transition: all 0.3s ease;
 	}
 
-	/* --- ADDITION: Hamburger Button Styles --- */
+	/* Bracket animation for HOVER on INACTIVE links */
+	.main-nav a:not(.active):hover {
+		color: var(--color-text-light);
+	}
+	.main-nav a:not(.active)::before,
+	.main-nav a:not(.active)::after {
+		content: '[';
+		position: absolute;
+		top: 50%;
+		font-weight: bold;
+		color: var(--color-cyan-teal-accent);
+		opacity: 0;
+		transform: translateY(-50%) scale(0.5);
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+	}
+	.main-nav a:not(.active)::before {
+		content: '[';
+		left: -5px;
+	}
+	.main-nav a:not(.active)::after {
+		content: ']';
+		right: -5px;
+	}
+	.main-nav a:not(.active):hover::before,
+	.main-nav a:not(.active):hover::after {
+		opacity: 1;
+		transform: translateY(-50%) scale(1);
+	}
+
+	/* "Target Lock" corners for the ACTIVE link */
+	.main-nav a.active {
+		color: var(--color-text-light);
+		text-shadow: 0 0 8px var(--color-cyan-teal-accent);
+	}
+	.main-nav a.active::before,
+	.main-nav a.active::after {
+		content: '';
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		opacity: 1;
+		transition: all 0.3s ease;
+	}
+	.main-nav a.active::before {
+		top: 2px;
+		left: 3px;
+		border-top: 2px solid var(--color-cyan-teal-accent);
+		border-left: 2px solid var(--color-cyan-teal-accent);
+	}
+	.main-nav a.active::after {
+		bottom: 2px;
+		right: 3px;
+		border-bottom: 2px solid var(--color-cyan-teal-accent);
+		border-right: 2px solid var(--color-cyan-teal-accent);
+	}
+
+	/* --- Hamburger Button Styles --- */
 	.hamburger-button {
-		display: none; /* Hidden by default */
+		display: none;
 		flex-direction: column;
 		justify-content: space-around;
 		width: 30px;
@@ -217,9 +250,8 @@
 		border: none;
 		cursor: pointer;
 		padding: 0;
-		z-index: 1001; /* Above header content */
+		z-index: 1001;
 	}
-
 	.hamburger-bar {
 		width: 100%;
 		height: 3px;
@@ -228,8 +260,6 @@
 		transition: all 0.3s ease;
 		transform-origin: center;
 	}
-
-	/* --- ADDITION: Hamburger to X animation --- */
 	.hamburger-button.is-open .hamburger-bar:nth-child(1) {
 		transform: translateY(8px) rotate(45deg);
 	}
@@ -242,29 +272,25 @@
 
 	/* --- Responsive header adjustments --- */
 	@media (min-width: 992px) {
-		/* MODIFICATION: Show tagline on desktop views */
 		.logo-tagline {
 			display: inline;
 		}
 	}
-
 	@media (max-width: 992px) {
 		.main-nav li {
-			margin-left: 1.5rem;
+			/* MODIFICATION: Scaled down spacing */
+			margin-left: 0.8rem;
 		}
 	}
-
 	@media (max-width: 768px) {
 		.main-header {
 			padding: 1rem 0;
 		}
 		.main-header .container {
-			flex-direction: row; /* Keep it as a row to have logo and hamburger side-by-side */
+			flex-direction: row;
 			justify-content: space-between;
 			gap: 0.75rem;
 		}
-
-		/* MODIFICATION: Hide desktop nav, show hamburger */
 		.main-nav {
 			display: none;
 		}
@@ -272,7 +298,6 @@
 			display: flex;
 		}
 	}
-
 	@media (max-width: 480px) {
 		.logo {
 			font-size: 1.5rem;

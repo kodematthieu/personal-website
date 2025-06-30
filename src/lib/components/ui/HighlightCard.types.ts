@@ -64,7 +64,7 @@ interface HighlightCardStructuredBase {
 }
 
 interface HighlightCardStructuredWithIcon extends HighlightCardStructuredBase {
-	icon: any;
+	icon: string;
 	iconPlacement?: 'top' | 'left' | 'right';
 	iconSize?: string;
 	iconWrapperPadding?: string;

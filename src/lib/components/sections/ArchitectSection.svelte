@@ -15,11 +15,13 @@
 		<div class="intro-paragraphs-section">
 			<div class="intro-paragraph-column">
 				{#each introductoryTextLeft as paragraph}
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					<p class="intro-paragraph">{@html DOMPurify.sanitize(paragraph)}</p>
 				{/each}
 			</div>
 			<div class="intro-paragraph-column">
 				{#each introductoryTextRight as paragraph}
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					<p class="intro-paragraph">{@html DOMPurify.sanitize(paragraph)}</p>
 				{/each}
 			</div>

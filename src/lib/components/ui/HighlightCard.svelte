@@ -208,6 +208,7 @@
 							<div class="text-content-stacked" style={textContentStackedStyle}>
 								{#if title}<h3 class="highlight-title" style={titleStyleStandard}>{title}</h3>{/if}
 								{#if details}<p class="highlight-description" style={detailsStyleStandard}>
+										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html sanitizedDetails}
 									</p>{/if}
 							</div>
@@ -233,6 +234,7 @@
 							{#if details}
 								<div class="details-block" style={detailsBlockStyle}>
 									<p class="highlight-description" style={detailsStyleForIconRow}>
+										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html sanitizedDetails}
 									</p>
 								</div>
@@ -243,6 +245,7 @@
 						<div class="text-content-stacked" style={textContentStackedStyle}>
 							{#if title}<h3 class="highlight-title" style={titleStyleStandard}>{title}</h3>{/if}
 							{#if details}<p class="highlight-description" style={detailsStyleStandard}>
+									<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 									{@html sanitizedDetails}
 								</p>{/if}
 						</div>
@@ -286,6 +289,7 @@
 							<div class="text-content-stacked" style={textContentStackedStyle}>
 								{#if title}<h3 class="highlight-title" style={titleStyleStandard}>{title}</h3>{/if}
 								{#if details}<p class="highlight-description" style={detailsStyleStandard}>
+										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html sanitizedDetails}
 									</p>{/if}
 							</div>
@@ -311,6 +315,7 @@
 							{#if details}
 								<div class="details-block" style={detailsBlockStyle}>
 									<p class="highlight-description" style={detailsStyleForIconRow}>
+										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html sanitizedDetails}
 									</p>
 								</div>
@@ -321,6 +326,7 @@
 						<div class="text-content-stacked" style={textContentStackedStyle}>
 							{#if title}<h3 class="highlight-title" style={titleStyleStandard}>{title}</h3>{/if}
 							{#if details}<p class="highlight-description" style={detailsStyleStandard}>
+									<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 									{@html sanitizedDetails}
 								</p>{/if}
 						</div>

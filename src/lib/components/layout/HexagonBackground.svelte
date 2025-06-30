@@ -23,7 +23,6 @@
 	// Colors from the new scheme (ensure these CSS variables are defined in app.css)
 	let primaryColorHex: number; // For neon purple --color-primary
 	let primaryContainerColorHex: number; // For darker purple border --color-primary-container or a stroke color
-	let onBackgroundColorRGB: [number, number, number]; // For the gradient overlay
 
 	const ABSOLUTE_MIN_RADIUS = 30;
 	const TYPICAL_RANGE_MAX = 100;
@@ -223,13 +222,6 @@
 		return 'default-seed-v2';
 	}
 
-	function hexToRgb(hex: string): [number, number, number] | null {
-		const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-		return result
-			? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
-			: null;
-	}
-
 	function handleScroll() {
 		if (backgroundContentContainer) {
 			backgroundContentContainer.y = -window.scrollY * PARALLAX_SPEED_FACTOR;
@@ -269,9 +261,6 @@
 			);
 			const primaryContainerStr = styles.getPropertyValue('--color-primary-container').trim();
 			primaryContainerColorHex = parseInt(primaryContainerStr.substring(1), 16);
-
-			const onBgStr = styles.getPropertyValue('--color-on-background').trim();
-			onBackgroundColorRGB = hexToRgb(onBgStr) || [224, 224, 224];
 
 			app = new Application();
 			await app.init({
