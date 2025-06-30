@@ -46,8 +46,8 @@
 			<span class="typed-text" bind:this={nameTextElem}></span>
 		</p>
 		<div class="nexus-buttons">
-			<Button href="#transmit">// Initiate Dialogue //</Button>
-			<Button href="#constructs">// Explore Constructs //</Button>
+			<Button href="#transmit" class="nexus-button">// Initiate Dialogue //</Button>
+			<Button href="#constructs" class="nexus-button">// Explore Constructs //</Button>
 		</div>
 	</div>
 </section>

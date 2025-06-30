@@ -12,11 +12,15 @@
 
 {#if href}
 	<a {href} {...attr as HTMLAnchorAttributes} class="btn">
-		{@render children()}
+		<span class="btn-content">
+			{@render children()}
+		</span>
 	</a>
 {:else}
 	<button {...attr as HTMLButtonAttributes} class="btn">
-		{@render children()}
+		<span class="btn-content">
+			{@render children()}
+		</span>
 	</button>
 {/if}
 
@@ -38,7 +42,8 @@
 		position: relative;
 		overflow: hidden;
 		border-radius: var(--border-radius-sharp);
-		text-decoration: none; /* Ensure links don't have underlines */
+		text-decoration: none;
+		z-index: 2;
 	}
 
 	.btn::before {
@@ -50,7 +55,15 @@
 		height: 100%;
 		background-color: var(--color-primary);
 		transition: left 0.3s ease;
+		z-index: -1;
+	}
+
+	.btn-content {
+		position: relative;
 		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.btn:hover {

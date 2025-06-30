@@ -1,30 +1,71 @@
-node_modules
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
 
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
-/build
+# Diagnostic reports (https://nodejs.org/api/report.html)
+.report/
 
-# OS
-.DS_Store
-Thumbs.db
+# Runtime data
+*.cjs
+*.mjs
+*.d.ts
+*.tsbuildinfo
+*.func.js
 
-# Env
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
 .env
-.env.*
-!.env.example
-!.env.test
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+# Editor directories and files
+.idea
+.vscode/*
+!.vscode/extensions.json
+.c9/
+.sync/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+.history/
 
-# Paraglide
-src/lib/paraglide
+# SvelteKit
+.svelte-kit/
+.vercel/
 
-# Gemini-specific ignores
-project_snapshot.txt
-packer.js
+# Bun
+bun.lockb
+
+# Storybook
+storybook-static/
+
+# Inlang
+project.inlang/cache/
+
+# Build output
+build/
+
+# Netlify
+.netlify/

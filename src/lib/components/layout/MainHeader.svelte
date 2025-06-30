@@ -1,11 +1,15 @@
 <script lang="ts">
-	// This component contains the main site navigation.
+	import { navigationLinks } from '$lib/navigation';
+
+	// MODIFICATION: Accept isSidebarOpen state prop
+	let { onToggle, isSidebarOpen }: { onToggle: () => void; isSidebarOpen: boolean } = $props();
 </script>
 
+// /src/lib/components/layout/MainHeader.svelte
 <header class="main-header">
 	<div class="container">
 		<a href="#nexus" class="logo">
-			<!-- NEW SVG Icon: The Architect's Sigil (Dynamic Version) -->
+			<!-- SVG Icon: The Architect's Sigil (Dynamic Version) -->
 			<svg
 				version="1.1"
 				xmlns="http://www.w3.org/2000/svg"
@@ -19,15 +23,12 @@
 					/>
 					<path id="minor-ray" d="M 960 160 L 875 605 L 960 580 L 1045 605 Z" />
 				</defs>
-				<!-- The central core, animated via CSS class -->
 				<circle class="logo-core" cx="960" cy="960" r="150" />
-				<!-- Major Rays, color controlled by CSS variable -->
 				<g style="fill: var(--logo-major-ray-color);">
 					<use xlink:href="#major-ray" transform="rotate(0, 960, 960)" />
 					<use xlink:href="#major-ray" transform="rotate(120, 960, 960)" />
 					<use xlink:href="#major-ray" transform="rotate(240, 960, 960)" />
 				</g>
-				<!-- Minor Rays, color controlled by CSS variable -->
 				<g style="fill: var(--logo-minor-ray-color);">
 					<use xlink:href="#minor-ray" transform="rotate(60, 960, 960)" />
 					<use xlink:href="#minor-ray" transform="rotate(180, 960, 960)" />
@@ -36,15 +37,26 @@
 			</svg>
 			KodeMat<span class="logo-tagline"> // Systematic Synthesis</span>
 		</a>
+
 		<nav class="main-nav">
 			<ul>
-				<li><a href="#nexus">~ Nexus</a></li>
-				<li><a href="#architect">~ The Architect</a></li>
-				<li><a href="#disciplines">~ Disciplines</a></li>
-				<li><a href="#constructs">~ Constructs</a></li>
-				<li><a href="#transmit">~ Transmit</a></li>
+				{#each navigationLinks as link}
+					<li><a href={link.href}>{link.label}</a></li>
+				{/each}
 			</ul>
 		</nav>
+
+		<!-- MODIFICATION: Add class directive for open state -->
+		<button
+			class="hamburger-button"
+			class:is-open={isSidebarOpen}
+			onclick={onToggle}
+			aria-label="Toggle navigation menu"
+		>
+			<span class="hamburger-bar"></span>
+			<span class="hamburger-bar"></span>
+			<span class="hamburger-bar"></span>
+		</button>
 	</div>
 </header>
 
@@ -84,6 +96,19 @@
 		transition:
 			color 0.3s ease,
 			text-shadow 0.3s ease; /* Smooth color transition for state shift */
+	}
+
+	/* MODIFICATION: Style the tagline to be subordinate to the main logo text */
+	.logo-tagline {
+		display: none; /* Hidden on mobile by default */
+		font-size: 1.3rem; /* Reduced font size */
+		font-weight: 400; /* Lighter weight */
+		color: var(--color-text-dim);
+		margin-left: 0.75em;
+		letter-spacing: normal; /* Override parent styles */
+		text-shadow: none; /* Override parent styles */
+		animation: none; /* Override parent styles */
+		vertical-align: middle;
 	}
 
 	.logo svg {
@@ -181,7 +206,48 @@
 		width: 100%;
 	}
 
+	/* --- ADDITION: Hamburger Button Styles --- */
+	.hamburger-button {
+		display: none; /* Hidden by default */
+		flex-direction: column;
+		justify-content: space-around;
+		width: 30px;
+		height: 24px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 1001; /* Above header content */
+	}
+
+	.hamburger-bar {
+		width: 100%;
+		height: 3px;
+		background-color: var(--color-text-dim);
+		border-radius: 2px;
+		transition: all 0.3s ease;
+		transform-origin: center;
+	}
+
+	/* --- ADDITION: Hamburger to X animation --- */
+	.hamburger-button.is-open .hamburger-bar:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+	.hamburger-button.is-open .hamburger-bar:nth-child(2) {
+		opacity: 0;
+	}
+	.hamburger-button.is-open .hamburger-bar:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+
 	/* --- Responsive header adjustments --- */
+	@media (min-width: 992px) {
+		/* MODIFICATION: Show tagline on desktop views */
+		.logo-tagline {
+			display: inline;
+		}
+	}
+
 	@media (max-width: 992px) {
 		.main-nav li {
 			margin-left: 1.5rem;
@@ -193,28 +259,23 @@
 			padding: 1rem 0;
 		}
 		.main-header .container {
-			flex-direction: column;
+			flex-direction: row; /* Keep it as a row to have logo and hamburger side-by-side */
+			justify-content: space-between;
 			gap: 0.75rem;
 		}
-		.logo .logo-tagline {
+
+		/* MODIFICATION: Hide desktop nav, show hamburger */
+		.main-nav {
 			display: none;
 		}
-		.main-nav ul {
-			justify-content: center;
-			flex-wrap: wrap;
-			gap: 0.5rem 1rem;
-		}
-		.main-nav li {
-			margin: 0;
+		.hamburger-button {
+			display: flex;
 		}
 	}
 
 	@media (max-width: 480px) {
 		.logo {
 			font-size: 1.5rem;
-		}
-		.main-nav a {
-			font-size: 0.9rem;
 		}
 	}
 </style>

@@ -8,23 +8,43 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				// Base Palette
+				// Semantic Colors
+				primary: 'var(--color-primary)',
+				'primary-rgb': 'var(--color-primary-rgb)',
+				'on-primary': 'var(--color-on-primary)',
+				'primary-container': 'var(--color-primary-container)',
+				'on-primary-container': 'var(--color-on-primary-container)',
+
+				secondary: 'var(--color-secondary)',
+				'on-secondary': 'var(--color-on-secondary)',
+				'secondary-container': 'var(--color-secondary-container)',
+				'on-secondary-container': 'var(--color-on-secondary-container)',
+
+				background: 'var(--color-background)',
+				'on-background': 'var(--color-on-background)',
+
+				surface: 'var(--color-surface)',
+				'on-surface': 'var(--color-on-surface)',
+				'surface-variant': 'var(--color-surface-variant)',
+				'on-surface-variant': 'var(--color-on-surface-variant)',
+
+				outline: 'var(--color-outline)',
+				shadow: 'var(--color-shadow)',
+
+				// Base Palette Colors (if still needed directly)
 				'bg-dark': 'var(--color-bg-dark)',
 				'bg-dark-light': 'var(--color-bg-dark-light)',
-
-				// Purple Primary Palette (used for primary, on-primary, etc.)
-				'purple-primary': 'var(--color-purple-primary)',
-				'purple-light': 'var(--color-purple-light)',
-				'purple-dark': 'var(--color-purple-dark)',
-
-				// Teal Accent Palette
-				'teal-accent': 'var(--color-teal-accent)',
-
-				// Text Colors
+				'deep-indigo-primary': 'var(--color-deep-indigo-primary)',
+				'deep-indigo-primary-rgb': 'var(--color-deep-indigo-primary-rgb)',
+				'deep-indigo-light': 'var(--color-deep-indigo-light)',
+				'deep-indigo-dark': 'var(--color-deep-indigo-dark)',
+				'cyan-teal-accent': 'var(--color-cyan-teal-accent)',
 				'text-light': 'var(--color-text-light)',
-				'text-dim': 'var(--color-text-dim)'
-
-				
+				'text-dim': 'var(--color-text-dim)',
+				'core-red': 'var(--color-core-red)',
+				'core-black': 'var(--color-core-black)',
+				'core-dark-bg': 'var(--color-core-dark-bg)',
+				'core-dark-red': 'var(--color-core-dark-red)'
 			}
 		}
 	},

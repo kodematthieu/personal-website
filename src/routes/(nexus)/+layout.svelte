@@ -6,10 +6,16 @@
 	import MainFooter from '$lib/components/layout/MainFooter.svelte';
 	import HexagonBackground from '$lib/components/layout/HexagonBackground.svelte';
 	import GridBackground from '$lib/components/layout/GridBackground.svelte';
+	import Sidebar from '$lib/components/layout/Sidebar.svelte';
 
 	let { children } = $props<{ children: Snippet }>();
 
-	// Smooth Scroll for Navigation (specific to this layout)
+	let isSidebarOpen = $state(false);
+
+	function toggleSidebar() {
+		isSidebarOpen = !isSidebarOpen;
+	}
+
 	onMount(() => {
 		document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 			anchor.addEventListener('click', function (this: Element, e) {
@@ -22,14 +28,15 @@
 	});
 </script>
 
-<!-- Background components are part of the nexus layout -->
+// /src/routes/(nexus)/+layout.svelte
 <HexagonBackground seed={'SYSTEMATIC_SYNTHESIS_NEXUS'} />
 <GridBackground />
 
-<!-- Render the layout components -->
-<MainHeader />
+<!-- MODIFICATION: Pass state and toggle function to the header -->
+<MainHeader onToggle={toggleSidebar} {isSidebarOpen} />
 
-<!-- The main scrollable content area -->
+<Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+
 <div class="site-content-wrapper">
 	<main class="main-content-area">
 		{@render children()}
@@ -43,12 +50,10 @@
 		position: relative;
 		z-index: 1;
 		min-height: 100vh;
-		/* MODIFICATION: Make wrapper a flex container */
 		display: flex;
 		flex-direction: column;
 	}
 	.main-content-area {
-		/* MODIFICATION: Allow main area to grow and fill space */
 		flex: 1;
 		display: flex;
 		flex-direction: column;
