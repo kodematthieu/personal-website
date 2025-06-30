@@ -16,8 +16,8 @@
 		overflow: hidden; /* Contains animations without creating scrollbars */
 		background: radial-gradient(
 			circle at center,
-			rgba(var(--color-deep-indigo-primary-rgb), 0.1) 0%,
-			rgba(15, 15, 26, 0.7) 70%
+			rgba(var(--color-primary-rgb), 0.1) 0%,
+			rgba(var(--color-background-rgb), 0.7) 70%
 		); /* Radial gradient now lives here */
 	}
 

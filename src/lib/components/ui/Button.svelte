@@ -76,6 +76,29 @@
 		left: 0;
 	}
 
+	/* MODIFICATION: Styles for the disabled state */
+	.btn:disabled,
+	.btn[disabled] {
+		border-color: var(--color-primary);
+		color: var(--color-text-dim);
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+
+	.btn:disabled:hover,
+	.btn[disabled]:hover {
+		/* Explicitly prevent hover effects */
+		color: var(--color-text-dim);
+		border-color: var(--color-primary);
+		box-shadow: none;
+	}
+
+	.btn:disabled:hover::before,
+	.btn[disabled]:hover::before {
+		/* Ensure the fill animation does not trigger on hover */
+		left: -100%;
+	}
+
 	/* Responsive button adjustments */
 	@media (max-width: 768px) {
 		.btn.nexus-button {

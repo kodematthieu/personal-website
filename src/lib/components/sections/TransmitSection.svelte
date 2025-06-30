@@ -141,11 +141,11 @@
 	.transmit-form {
 		max-width: 600px;
 		margin: 0 auto;
-		background-color: var(--color-bg-dark-light);
-		border: 1px solid var(--color-purple-dark);
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-primary-container);
 		border-radius: var(--border-radius-sharp);
 		padding: 3rem;
-		box-shadow: 0 0 20px rgba(var(--color-purple-primary-rgb), 0.1);
+		box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.1);
 	}
 	.form-group {
 		margin-bottom: 1.5rem;
@@ -154,7 +154,7 @@
 		display: block;
 		font-family: 'Space Mono', monospace;
 		font-size: 1rem;
-		color: var(--color-purple-primary);
+		color: var(--color-primary);
 		margin-bottom: 0.5rem;
 	}
 	.form-group input,
@@ -162,7 +162,7 @@
 		width: 100%;
 		padding: 1rem;
 		background-color: var(--color-bg-dark);
-		border: 1px solid var(--color-purple-dark);
+		border: 1px solid var(--color-primary-container);
 		border-radius: var(--border-radius-sharp);
 		color: var(--color-text-light);
 		font-family: 'Inter', sans-serif;
@@ -174,8 +174,8 @@
 	}
 	.form-group input:focus,
 	.form-group textarea:focus {
-		border-color: var(--color-purple-primary);
-		box-shadow: 0 0 10px rgba(var(--color-purple-light), 0.5);
+		border-color: var(--color-primary);
+		box-shadow: 0 0 10px rgba(var(--color-secondary-rgb), 0.5);
 	}
 	.form-group textarea {
 		resize: vertical;
@@ -209,18 +209,18 @@
 			transform 0.3s ease;
 	}
 	.social-link :global(svg) {
-		fill: var(--color-purple-primary);
+		fill: var(--color-primary);
 		margin-bottom: 0.5rem;
 		transition:
 			fill 0.3s ease,
 			transform 0.3s ease;
 	}
 	.social-link:hover {
-		color: var(--color-purple-light);
+		color: var(--color-secondary);
 		transform: translateY(-5px);
 	}
 	.social-link:hover :global(svg) {
-		fill: var(--color-purple-light);
+		fill: var(--color-secondary);
 		transform: scale(1.1);
 	}
 
@@ -233,9 +233,9 @@
 	}
 
 	.form-result.success {
-		background-color: rgba(var(--color-teal-accent), 0.1);
-		border: 1px solid var(--color-teal-accent);
-		color: var(--color-teal-accent);
+		background-color: rgba(var(--color-secondary-rgb), 0.1);
+		border: 1px solid var(--color-secondary);
+		color: var(--color-secondary);
 	}
 
 	.form-result.failure {

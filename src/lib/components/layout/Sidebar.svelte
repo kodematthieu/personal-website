@@ -2,13 +2,27 @@
 	import { navigationLinks } from '$lib/navigation';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import Icon from '@iconify/svelte';
 
-	// MODIFICATION: Accept activeSectionId to track active state
 	let {
 		isOpen,
 		onClose,
 		activeSectionId
 	}: { isOpen: boolean; onClose: () => void; activeSectionId: string } = $props();
+
+	// MODIFICATION: State for the theme toggle
+	let isFlowStateActive = $state(false);
+
+	onMount(() => {
+		// Sync with the body's class when the component mounts (i.e., when sidebar opens)
+		isFlowStateActive = document.body.classList.contains('debug-mode');
+	});
+
+	function toggleFlowState() {
+		document.body.classList.toggle('debug-mode');
+		isFlowStateActive = !isFlowStateActive; // Update local state to reflect the change
+	}
 </script>
 
 {#if isOpen}
@@ -24,7 +38,6 @@
 			<ul>
 				{#each navigationLinks as link}
 					<li>
-						<!-- MODIFICATION: Add active class based on activeSectionId -->
 						<a href={link.href} onclick={onClose} class:active={link.href === '#' + activeSectionId}
 							>{link.label}</a
 						>
@@ -32,6 +45,21 @@
 				{/each}
 			</ul>
 		</nav>
+
+		<!-- MODIFICATION: Added State Toggle Button -->
+		<div class="sidebar-footer">
+			<button class="state-toggle-button" onclick={toggleFlowState}>
+				<Icon icon={isFlowStateActive ? 'lucide:cpu' : 'lucide:atom'} />
+				<span>
+					{#if isFlowStateActive}
+						Resume Analysis
+					{:else}
+						Engage Flow State
+					{/if}
+				</span>
+			</button>
+		</div>
+
 		<button class="close-button" onclick={onClose} aria-label="Close navigation menu">×</button>
 	</aside>
 {/if}
@@ -57,13 +85,14 @@
 		right: 0;
 		height: 100vh;
 		width: min(75vw, 300px);
-		background-color: var(--color-bg-dark-light);
+		background-color: var(--color-surface);
 		border-left: 1px solid var(--color-outline);
 		box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
 		padding: 6rem 2rem 4rem 2rem;
 		z-index: 999;
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between; /* MODIFICATION: Pushes footer to bottom */
 		box-sizing: border-box;
 	}
 
@@ -76,7 +105,6 @@
 		gap: 1.5rem;
 	}
 
-	/* MODIFICATION: Base link style adapted for effects */
 	.sidebar-nav a {
 		font-family: 'Space Mono', monospace;
 		font-size: 1.3rem;
@@ -88,7 +116,6 @@
 		position: relative;
 	}
 
-	/* MODIFICATION: Bracket animation for HOVER on INACTIVE links */
 	.sidebar-nav a:not(.active):hover {
 		color: var(--color-text-light);
 	}
@@ -98,7 +125,7 @@
 		position: absolute;
 		top: 50%;
 		font-weight: bold;
-		color: var(--color-cyan-teal-accent);
+		color: var(--color-secondary);
 		opacity: 0;
 		transform: translateY(-50%) scale(0.5);
 		transition:
@@ -119,10 +146,9 @@
 		transform: translateY(-50%) scale(1);
 	}
 
-	/* MODIFICATION: "Target Lock" corners for the ACTIVE link */
 	.sidebar-nav a.active {
 		color: var(--color-text-light);
-		text-shadow: 0 0 8px var(--color-cyan-teal-accent);
+		text-shadow: 0 0 8px var(--color-secondary);
 	}
 	.sidebar-nav a.active::before,
 	.sidebar-nav a.active::after {
@@ -136,14 +162,14 @@
 	.sidebar-nav a.active::before {
 		top: 2px;
 		left: -10px;
-		border-top: 2px solid var(--color-cyan-teal-accent);
-		border-left: 2px solid var(--color-cyan-teal-accent);
+		border-top: 2px solid var(--color-secondary);
+		border-left: 2px solid var(--color-secondary);
 	}
 	.sidebar-nav a.active::after {
 		bottom: 2px;
 		right: -10px;
-		border-bottom: 2px solid var(--color-cyan-teal-accent);
-		border-right: 2px solid var(--color-cyan-teal-accent);
+		border-bottom: 2px solid var(--color-secondary);
+		border-right: 2px solid var(--color-secondary);
 	}
 
 	.close-button {
@@ -161,5 +187,43 @@
 
 	.close-button:hover {
 		color: var(--color-text-light);
+	}
+
+	/* MODIFICATION: Styles for the new footer and toggle button */
+	.sidebar-footer {
+		padding-top: 2rem;
+		border-top: 1px solid var(--color-outline);
+	}
+
+	.state-toggle-button {
+		width: 100%;
+		background-color: transparent;
+		border: 1px solid var(--color-outline);
+		color: var(--color-text-dim);
+		padding: 0.75rem 1rem;
+		font-family: 'Space Mono', monospace;
+		font-size: 1rem;
+		border-radius: var(--border-radius-sharp);
+		cursor: pointer;
+		transition: all 0.3s ease;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	.state-toggle-button:hover {
+		border-color: var(--color-primary);
+		background-color: rgba(var(--color-primary-rgb), 0.1);
+		color: var(--color-text-light);
+	}
+
+	:global(body.debug-mode) .state-toggle-button {
+		border-color: var(--color-core-red);
+		color: var(--color-core-red);
+	}
+	:global(body.debug-mode) .state-toggle-button:hover {
+		background-color: rgba(var(--color-core-red), 0.1);
+		color: var(--color-core-red);
 	}
 </style>

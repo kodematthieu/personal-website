@@ -9,7 +9,6 @@
 	}: { onToggle: () => void; isSidebarOpen: boolean; activeSectionId: string } = $props();
 </script>
 
-// /src/lib/components/layout/MainHeader.svelte
 <header class="main-header">
 	<div class="container">
 		<a href="#nexus" class="logo">
@@ -67,7 +66,7 @@
 
 <style>
 	.main-header {
-		background-color: var(--color-bg-dark-light);
+		background-color: var(--color-surface);
 		padding: 1.5rem 0;
 		border-bottom: 1px solid var(--color-outline);
 		position: fixed;
@@ -84,14 +83,14 @@
 	}
 
 	.logo {
-		--logo-major-ray-color: var(--color-deep-indigo-primary);
+		--logo-major-ray-color: var(--color-primary);
 		--logo-minor-ray-color: var(--color-core-red);
 		--logo-core-color-a: var(--color-text-light);
 		--logo-core-color-b: var(--color-core-black);
 		font-family: 'Space Mono', monospace;
 		font-size: 1.8rem;
-		color: var(--color-deep-indigo-light);
-		text-shadow: 0 0 10px var(--color-deep-indigo-primary);
+		color: var(--color-primary-light);
+		text-shadow: 0 0 10px var(--color-primary);
 		letter-spacing: 1px;
 		display: flex;
 		align-items: center;
@@ -151,13 +150,13 @@
 
 	@keyframes pulse-logo-text {
 		0% {
-			text-shadow: 0 0 5px var(--color-deep-indigo-primary);
+			text-shadow: 0 0 5px var(--color-primary);
 		}
 		50% {
-			text-shadow: 0 0 20px var(--color-deep-indigo-light);
+					text-shadow: 0 0 20px var(--color-primary-light);
 		}
 		100% {
-			text-shadow: 0 0 5px var(--color-deep-indigo-primary);
+			text-shadow: 0 0 5px var(--color-primary);
 		}
 	}
 
@@ -191,7 +190,7 @@
 		position: absolute;
 		top: 50%;
 		font-weight: bold;
-		color: var(--color-cyan-teal-accent);
+		color: var(--color-secondary);
 		opacity: 0;
 		transform: translateY(-50%) scale(0.5);
 		transition:
@@ -215,7 +214,7 @@
 	/* "Target Lock" corners for the ACTIVE link */
 	.main-nav a.active {
 		color: var(--color-text-light);
-		text-shadow: 0 0 8px var(--color-cyan-teal-accent);
+		text-shadow: 0 0 8px var(--color-secondary);
 	}
 	.main-nav a.active::before,
 	.main-nav a.active::after {
@@ -229,21 +228,21 @@
 	.main-nav a.active::before {
 		top: 2px;
 		left: 3px;
-		border-top: 2px solid var(--color-cyan-teal-accent);
-		border-left: 2px solid var(--color-cyan-teal-accent);
+		border-top: 2px solid var(--color-secondary);
+		border-left: 2px solid var(--color-secondary);
 	}
 	.main-nav a.active::after {
 		bottom: 2px;
 		right: 3px;
-		border-bottom: 2px solid var(--color-cyan-teal-accent);
-		border-right: 2px solid var(--color-cyan-teal-accent);
+		border-bottom: 2px solid var(--color-secondary);
+		border-right: 2px solid var(--color-secondary);
 	}
 
 	/* --- Hamburger Button Styles --- */
 	.hamburger-button {
 		display: none;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: space-between;
 		width: 30px;
 		height: 24px;
 		background: transparent;
@@ -261,13 +260,13 @@
 		transform-origin: center;
 	}
 	.hamburger-button.is-open .hamburger-bar:nth-child(1) {
-		transform: translateY(8px) rotate(45deg);
+		transform: translateY(10.5px) rotate(45deg);
 	}
 	.hamburger-button.is-open .hamburger-bar:nth-child(2) {
 		opacity: 0;
 	}
 	.hamburger-button.is-open .hamburger-bar:nth-child(3) {
-		transform: translateY(-8px) rotate(-45deg);
+		transform: translateY(-10.5px) rotate(-45deg);
 	}
 
 	/* --- Responsive header adjustments --- */

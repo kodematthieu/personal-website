@@ -33,13 +33,13 @@
 	/* The .section-heading style is now correctly handled by the global app.css */
 
 	.architect-content-wrapper {
-		background-color: var(--color-bg-dark);
-		border: 1px solid var(--color-purple-dark);
+		background-color: var(--color-background);
+		border: 1px solid var(--color-outline);
 		border-radius: var(--border-radius-sharp);
 		padding: 3rem;
 		max-width: 1100px;
 		margin: 0 auto;
-		box-shadow: 0 0 25px rgba(var(--color-purple-primary-rgb), 0.15);
+		box-shadow: 0 0 25px rgba(var(--color-primary-rgb), 0.15);
 	}
 
 	.intro-paragraphs-section {
@@ -62,8 +62,8 @@
 	}
 
 	.intro-paragraph :global(strong) {
-		color: var(--color-purple-light);
-		text-shadow: 0 0 8px rgba(var(--color-purple-primary-rgb), 0.5);
+		color: var(--color-secondary);
+		text-shadow: 0 0 8px rgba(var(--color-secondary-rgb), 0.5);
 		font-weight: 600;
 	}
 

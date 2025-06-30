@@ -33,38 +33,38 @@
 	];
 
 	const allProjects: Project[] = [
-		{
-			title: 'Kernel Module Loader',
-			description:
-				'A secure and efficient utility for dynamically loading and managing Linux kernel modules at runtime.',
-			projectTypeLabel: '<System: Kernel Utility>',
-			techTags: ['C', 'Linux Kernel', 'System Calls', 'Security'],
-			githubLink: 'https://github.com/kodematthieu/kernel-module-loader'
-		},
-		{
-			title: 'Concurrent Task Scheduler',
-			description:
-				'A high-performance scheduler designed for parallel task execution across multiple CPU cores with minimal overhead.',
-			projectTypeLabel: '<System: Concurrency Engine>',
-			techTags: ['Rust', 'Concurrency', 'Algorithms', 'Optimization'],
-			githubLink: 'https://github.com/kodematthieu/task-scheduler'
-		},
-		{
-			title: 'Network Packet Analyzer',
-			description:
-				'A command-line tool for capturing, parsing, and analyzing network traffic at the raw packet level.',
-			projectTypeLabel: '<Module: Packet Inspector>',
-			techTags: ['GoLang', 'Networking', 'Packet Capture', 'CLI'],
-			githubLink: 'https://github.com/kodematthieu/packet-analyzer'
-		},
-		{
-			title: 'Embedded Firmware Update System',
-			description:
-				'Developed a robust over-the-air (OTA) firmware update mechanism for resource-constrained embedded devices.',
-			projectTypeLabel: '<Protocol: OTA Firmware>',
-			techTags: ['C++', 'Embedded Systems', 'Firmware', 'Security'],
-			githubLink: 'https://github.com/kodematthieu/firmware-updater'
-		}
+		// {
+		// 	title: 'Kernel Module Loader',
+		// 	description:
+		// 		'A secure and efficient utility for dynamically loading and managing Linux kernel modules at runtime.',
+		// 	projectTypeLabel: '<System: Kernel Utility>',
+		// 	techTags: ['C', 'Linux Kernel', 'System Calls', 'Security'],
+		// 	githubLink: 'https://github.com/kodematthieu/kernel-module-loader'
+		// },
+		// {
+		// 	title: 'Concurrent Task Scheduler',
+		// 	description:
+		// 		'A high-performance scheduler designed for parallel task execution across multiple CPU cores with minimal overhead.',
+		// 	projectTypeLabel: '<System: Concurrency Engine>',
+		// 	techTags: ['Rust', 'Concurrency', 'Algorithms', 'Optimization'],
+		// 	githubLink: 'https://github.com/kodematthieu/task-scheduler'
+		// },
+		// {
+		// 	title: 'Network Packet Analyzer',
+		// 	description:
+		// 		'A command-line tool for capturing, parsing, and analyzing network traffic at the raw packet level.',
+		// 	projectTypeLabel: '<Module: Packet Inspector>',
+		// 	techTags: ['GoLang', 'Networking', 'Packet Capture', 'CLI'],
+		// 	githubLink: 'https://github.com/kodematthieu/packet-analyzer'
+		// },
+		// {
+		// 	title: 'Embedded Firmware Update System',
+		// 	description:
+		// 		'Developed a robust over-the-air (OTA) firmware update mechanism for resource-constrained embedded devices.',
+		// 	projectTypeLabel: '<Protocol: OTA Firmware>',
+		// 	techTags: ['C++', 'Embedded Systems', 'Firmware', 'Security'],
+		// 	githubLink: 'https://github.com/kodematthieu/firmware-updater'
+		// }
 	];
 	const featuredProjects = allProjects.slice(0, 3);
 </script>

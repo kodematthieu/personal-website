@@ -1,4 +1,3 @@
-<!-- src/routes/(nexus)/+layout.svelte -->
 <script lang="ts">
 	import { onMount, type Snippet, onDestroy } from 'svelte';
 
@@ -61,7 +60,6 @@
 	});
 </script>
 
-// /src/routes/(nexus)/+layout.svelte // /src/routes/(nexus)/+layout.svelte
 <HexagonBackground seed={'SYSTEMATIC_SYNTHESIS_NEXUS'} />
 <GridBackground />
 

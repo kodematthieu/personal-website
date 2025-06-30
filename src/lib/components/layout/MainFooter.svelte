@@ -13,7 +13,7 @@
 
 <style>
 	.main-footer {
-		background-color: var(--color-bg-dark-light);
+		background-color: var(--color-surface);
 		padding: 2rem 0;
 		border-top: 1px solid var(--color-outline);
 		text-align: center;

@@ -15,36 +15,56 @@
 
 <section id="constructs" class="constructs-section container">
 	<h2 class="section-heading">Logical Constructs: Ongoing Iterations</h2>
-	<div class="project-grid">
-		{#each projects as project}
-			<div class="project-card">
-				<div class="project-image">
-					<span class="project-image-placeholder-text">{project.projectTypeLabel}</span>
-				</div>
-				<div class="project-content">
-					<div class="content-text-wrapper">
-						<h3>{project.title}</h3>
-						<p>{project.description}</p>
-						<p class="project-tech">{project.techTags.join(' | ')}</p>
+
+	{#if projects.length > 0}
+		<div class="project-grid">
+			{#each projects as project}
+				<div class="project-card">
+					<div class="project-image">
+						<span class="project-image-placeholder-text">{project.projectTypeLabel}</span>
 					</div>
-					<a
-						href={project.githubLink}
-						class="project-link"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Review Source <Icon icon="mdi:arrow-right" />
-					</a>
+					<div class="project-content">
+						<div class="content-text-wrapper">
+							<h3>{project.title}</h3>
+							<p>{project.description}</p>
+							<p class="project-tech">{project.techTags.join(' | ')}</p>
+						</div>
+						<a
+							href={project.githubLink}
+							class="project-link"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Review Source <Icon icon="mdi:arrow-right" />
+						</a>
+					</div>
 				</div>
-			</div>
-		{/each}
-	</div>
+			{/each}
+		</div>
+	{:else}
+		<div class="no-constructs-notice">
+			<p>No constructs available for review. Synthesis in progress.</p>
+		</div>
+	{/if}
+
 	<div class="archive-link-wrapper">
-		<Button disabled={true}>// Access Full Archives //</Button>
+		<Button disabled={projects.length === 0}>// Access Full Archives //</Button>
 	</div>
 </section>
 
 <style>
+	.no-constructs-notice {
+		text-align: center;
+		padding: 4rem 2rem;
+		background-color: var(--color-surface);
+		border: 1px dashed var(--color-primary-container);
+		border-radius: var(--border-radius-sharp);
+		max-width: 600px;
+		margin: 2rem auto 0;
+		color: var(--color-text-dim);
+		font-family: 'Space Mono', monospace;
+	}
+
 	.project-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
@@ -77,7 +97,7 @@
 	.project-image {
 		width: 100%;
 		aspect-ratio: 16 / 9;
-		background-color: var(--color-bg-dark);
+		background-color: var(--color-background);
 		align-items: center;
 		justify-content: center;
 		display: flex;
@@ -97,7 +117,7 @@
 		background: linear-gradient(
 			45deg,
 			rgba(var(--color-deep-indigo-primary-rgb), 0.2),
-			rgba(var(--color-cyan-teal-accent-rgb), 0.1)
+			rgba(var(--color-secondary-rgb), 0.1)
 		);
 		opacity: 0.8;
 		z-index: 0;

@@ -40,21 +40,21 @@
 		margin: 0 auto;
 	}
 	.discipline-category {
-		background-color: var(--color-bg-dark);
-		border: 1px solid var(--color-purple-dark);
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-primary-container);
 		border-radius: var(--border-radius-sharp);
 		padding: 3rem;
-		box-shadow: 0 0 15px rgba(var(--color-purple-primary), 0.1);
+		box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.1);
 		transition: all 0.3s ease;
 	}
 	.discipline-category:hover {
-		box-shadow: 0 0 30px rgba(var(--color-purple-light), 0.3);
+		box-shadow: 0 0 30px rgba(var(--color-secondary-rgb), 0.3);
 		transform: translateY(-5px);
 	}
 	.discipline-category h3 {
 		font-family: 'Space Mono', monospace;
 		font-size: 1.8rem;
-		color: var(--color-purple-primary);
+		color: var(--color-primary);
 		margin-bottom: 2rem;
 		text-align: center;
 		letter-spacing: 1px;
@@ -67,7 +67,7 @@
 	}
 	.discipline-item {
 		background-color: var(--color-bg-dark-light);
-		border: 1px solid var(--color-purple-dark);
+		border: 1px solid var(--color-primary-container);
 		padding: 0.7rem 1.2rem;
 		border-radius: var(--border-radius-sharp);
 		font-family: 'Space Mono', monospace;
@@ -84,7 +84,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(45deg, var(--color-purple-primary), var(--color-purple-light));
+		background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
 		opacity: 0;
 		transition: opacity 0.3s ease;
 		z-index: 0;
@@ -92,7 +92,7 @@
 	.discipline-item:hover {
 		color: var(--color-on-primary);
 		transform: translateY(-3px);
-		box-shadow: 0 0 15px rgba(var(--color-purple-light), 0.5);
+		box-shadow: 0 0 15px rgba(var(--color-secondary-rgb), 0.5);
 	}
 	.discipline-item:hover::before {
 		opacity: 0.8;
@@ -102,7 +102,7 @@
 		z-index: 1;
 	}
 	.discipline-category.soft-magic .discipline-item::before {
-		background: linear-gradient(45deg, var(--color-cyan-teal-accent), var(--color-purple-light));
+		background: linear-gradient(45deg, var(--color-secondary), var(--color-primary));
 	}
 
 	@media (min-width: 992px) {

@@ -57,7 +57,7 @@
 			border-color: var(--color-primary-container);
 		}
 		to {
-			box-shadow: 0 0 35px rgba(var(--color-deep-indigo-light-rgb), 0.25);
+			box-shadow: 0 0 35px rgba(var(--color-primary-light-rgb), 0.25);
 			border-color: var(--color-primary);
 		}
 	}
@@ -72,7 +72,7 @@
 	.notice-headline-major {
 		font-family: 'Space Mono', monospace;
 		font-size: 2rem;
-		color: var(--color-deep-indigo-light);
+		color: var(--color-primary-light);
 		text-shadow: 0 0 10px var(--color-primary);
 		margin-bottom: 1.5rem;
 	}

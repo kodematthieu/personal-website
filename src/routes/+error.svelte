@@ -49,7 +49,7 @@
 
 	.error-content {
 		max-width: 650px;
-		background-color: var(--color-core-dark-bg);
+		background-color: var(--color-surface);
 		border: 1px solid var(--color-core-dark-red);
 		border-radius: var(--border-radius-sharp);
 		padding: 3rem 4rem;
@@ -88,7 +88,7 @@
 	.error-message {
 		font-family: 'Space Mono', monospace;
 		color: var(--color-text-dim);
-		background: var(--color-bg-dark);
+		background: var(--color-background);
 		padding: 0.5rem;
 		border-radius: var(--border-radius-sharp);
 		margin-top: -1rem;

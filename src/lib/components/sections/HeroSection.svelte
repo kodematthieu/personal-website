@@ -52,7 +52,7 @@
 
 <style lang="scss">
 	.nexus-section {
-		height: 100vh;
+		height: 100dvh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -70,7 +70,7 @@
 		transform: translate(-50%, -50%);
 		width: 250px;
 		height: 250px;
-		background: radial-gradient(circle, #000 10%, #111 30%, var(--color-bg-dark) 70%);
+		background: radial-gradient(circle, #000 10%, #111 30%, var(--color-background) 70%);
 		border-radius: 50%;
 		box-shadow:
 			0 0 15px 5px rgba(0, 0, 0, 0.8),
@@ -103,9 +103,9 @@
 	.synthesis-core::after {
 		width: 150%;
 		height: 150%;
-		border: 1px dashed var(--color-deep-indigo-light);
+		border: 1px dashed var(--color-primary-light);
 		opacity: 0.4;
-		animation: accretion-disk-spin 8s linear infinite;
+		animation: accretion-disk-flux 12s ease-in-out infinite;
 	}
 
 	@keyframes core-swirl {
@@ -130,12 +130,22 @@
 		}
 	}
 
-	@keyframes accretion-disk-spin {
-		from {
-			transform: rotate(0deg);
+	@keyframes accretion-disk-flux {
+		0% {
+			transform: rotate(0deg) scale(1);
+			opacity: 0.4;
 		}
-		to {
-			transform: rotate(-360deg);
+		70% {
+			transform: rotate(-270deg) scale(1);
+			opacity: 0.4;
+		}
+		85% {
+			transform: rotate(-300deg) scale(0.85); /* Shrink and slow down rotation */
+			opacity: 0.2; /* Fade a bit */
+		}
+		100% {
+			transform: rotate(-360deg) scale(1);
+			opacity: 0.4;
 		}
 	}
 
@@ -147,10 +157,10 @@
 	.name-headline {
 		font-family: 'Space Mono', monospace;
 		font-size: clamp(2.5rem, 6vw, 3.8rem);
-		color: var(--color-purple-light);
+		color: var(--color-primary-light);
 		margin-bottom: 1.5rem;
 		letter-spacing: 3px;
-		text-shadow: 0 0 20px var(--color-purple-primary);
+		text-shadow: 0 0 20px var(--color-primary);
 		text-align: center;
 		line-height: 1.2;
 	}
