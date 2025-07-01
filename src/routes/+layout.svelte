@@ -11,9 +11,15 @@
 	onMount(() => {
 		let tapCount = 0;
 		let lastTapTime = 0;
-		const TAP_THRESHOLD_MS = 300; // Time in ms between taps to be considered consecutive
+		const TAP_THRESHOLD_MS = 150; // Time in ms between taps to be considered consecutive
+		let isToggleOnCooldown = false; // New cooldown flag
+		const COOLDOWN_DURATION_MS = 500; // Cooldown period after a toggle
 
 		const handleTap = () => {
+			if (isToggleOnCooldown) {
+				return; // Ignore taps during cooldown
+			}
+
 			const currentTime = Date.now();
 			if (currentTime - lastTapTime < TAP_THRESHOLD_MS) {
 				tapCount++;
@@ -22,19 +28,24 @@
 			}
 			lastTapTime = currentTime;
 
-			if (tapCount >= 5) {
+			if (tapCount >= 3) {
 				document.body.classList.toggle('debug-mode');
 				document.body.dispatchEvent(new CustomEvent('themeChanged'));
 				const isDebugMode = document.body.classList.contains('debug-mode');
 				if (isDebugMode) {
 					console.log(
-						'%c:: DEBUG MODE ACTIVATED (5-TAP EASTER EGG) ::',
+						'%c:: DEBUG MODE ACTIVATED (3-TAP EASTER EGG) ::',
 						'color: #ff0033; font-weight: bold; text-shadow: 0 0 5px #ff0033;'
 					);
 				} else {
 					console.log('%c:: DEBUG MODE DEACTIVATED ::', 'color: #9d00ff; font-weight: bold;');
 				}
 				tapCount = 0; // Reset count after activation/deactivation
+
+				isToggleOnCooldown = true; // Activate cooldown
+				setTimeout(() => {
+					isToggleOnCooldown = false;
+				}, COOLDOWN_DURATION_MS);
 			}
 		};
 

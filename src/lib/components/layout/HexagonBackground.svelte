@@ -240,7 +240,7 @@
 		);
 		const primaryContainerStr = styles.getPropertyValue('--color-primary-container').trim();
 		primaryContainerColorHex = parseInt(primaryContainerStr.substring(1), 16);
-		console.log("refresh colors: ", primaryContainerStr);
+		
 	}
 
 	function regenerateHexagons() {
