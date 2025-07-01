@@ -184,10 +184,14 @@
 
 	/* ++ STYLE for the field-specific error message */
 	.form-field-error {
-		color: var(--color-core-red);
+		color: var(--color-error);
 		font-family: 'Inter', sans-serif;
 		font-size: 0.85rem;
 		margin-top: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		background-color: rgba(var(--color-error-rgb), 0.1);
+		border: 1px solid rgba(var(--color-error-rgb), 0.3);
+		border-radius: var(--border-radius-soft);
 	}
 
 	.social-links {
@@ -239,9 +243,9 @@
 	}
 
 	.form-result.failure {
-		background-color: rgba(var(--color-core-red), 0.1);
-		border: 1px solid var(--color-core-red);
-		color: var(--color-core-red);
+		background-color: rgba(var(--color-error-rgb), 0.1);
+		border: 1px solid var(--color-error);
+		color: var(--color-error);
 	}
 
 	@media (max-width: 768px) {

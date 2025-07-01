@@ -38,7 +38,7 @@
 					<use xlink:href="#minor-ray" transform="rotate(300, 960, 960)" />
 				</g>
 			</svg>
-			KodeMat<span class="logo-tagline"> // Systematic Synthesis</span>
+			KodeMat
 		</a>
 
 		<nav class="main-nav">
@@ -98,18 +98,6 @@
 		transition:
 			color 0.3s ease,
 			text-shadow 0.3s ease;
-	}
-
-	.logo-tagline {
-		display: none;
-		font-size: 1.3rem;
-		font-weight: 400;
-		color: var(--color-text-dim);
-		margin-left: 0.75em;
-		letter-spacing: normal;
-		text-shadow: none;
-		animation: none;
-		vertical-align: middle;
 	}
 
 	.logo svg {
@@ -270,11 +258,6 @@
 	}
 
 	/* --- Responsive header adjustments --- */
-	@media (min-width: 992px) {
-		.logo-tagline {
-			display: inline;
-		}
-	}
 	@media (max-width: 992px) {
 		.main-nav li {
 			/* MODIFICATION: Scaled down spacing */
