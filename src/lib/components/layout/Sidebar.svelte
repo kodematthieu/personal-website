@@ -2,27 +2,12 @@
 	import { navigationLinks } from '$lib/navigation';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
-	import { onMount } from 'svelte';
-	import Icon from '@iconify/svelte';
 
 	let {
 		isOpen,
 		onClose,
 		activeSectionId
 	}: { isOpen: boolean; onClose: () => void; activeSectionId: string } = $props();
-
-	// MODIFICATION: State for the theme toggle
-	let isFlowStateActive = $state(false);
-
-	onMount(() => {
-		// Sync with the body's class when the component mounts (i.e., when sidebar opens)
-		isFlowStateActive = document.body.classList.contains('debug-mode');
-	});
-
-	function toggleFlowState() {
-		document.body.classList.toggle('debug-mode');
-		isFlowStateActive = !isFlowStateActive; // Update local state to reflect the change
-	}
 </script>
 
 {#if isOpen}
@@ -45,20 +30,6 @@
 				{/each}
 			</ul>
 		</nav>
-
-		<!-- MODIFICATION: Added State Toggle Button -->
-		<div class="sidebar-footer">
-			<button class="state-toggle-button" onclick={toggleFlowState}>
-				<Icon icon={isFlowStateActive ? 'lucide:cpu' : 'lucide:atom'} />
-				<span>
-					{#if isFlowStateActive}
-						Resume Analysis
-					{:else}
-						Engage Flow State
-					{/if}
-				</span>
-			</button>
-		</div>
 
 		<button class="close-button" onclick={onClose} aria-label="Close navigation menu">×</button>
 	</aside>
