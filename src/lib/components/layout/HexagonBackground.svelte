@@ -228,10 +228,24 @@
 		}
 	}
 
-	function handleResize() {
-		if (app && hostElement && backgroundContentContainer) {
-			app.renderer.resize(window.innerWidth, window.innerHeight);
+	function updateColorsFromCss() {
+		const styles = getComputedStyle(document.body);
+		pageBackgroundColorHex = parseInt(
+			styles.getPropertyValue('--color-background').trim().substring(1),
+			16
+		);
+		primaryColorHex = parseInt(
+			styles.getPropertyValue('--color-primary').trim().substring(1),
+			16
+		);
+		const primaryContainerStr = styles.getPropertyValue('--color-primary-container').trim();
+		primaryContainerColorHex = parseInt(primaryContainerStr.substring(1), 16);
+		console.log("refresh colors: ", primaryContainerStr);
+	}
 
+	function regenerateHexagons() {
+		if (app && hostElement && backgroundContentContainer) {
+			updateColorsFromCss(); // Update colors before regenerating
 			const currentSeed = getEffectiveSeed();
 			const seededRandom = seedrandom(currentSeed);
 			generateRandomHexagons(
@@ -245,22 +259,19 @@
 		}
 	}
 
+	function handleResize() {
+		if (app && hostElement && backgroundContentContainer) {
+			app.renderer.resize(window.innerWidth, window.innerHeight);
+			regenerateHexagons(); // Call regenerate on resize
+		}
+	}
+
 	onMount(async () => {
 		if (browser && hostElement) {
 			// ++ CREATE debounced handler instance with a 250ms wait time
 			debouncedResizeHandler = debounce(handleResize, 250);
 
-			const styles = getComputedStyle(document.documentElement);
-			pageBackgroundColorHex = parseInt(
-				styles.getPropertyValue('--color-background').trim().substring(1),
-				16
-			);
-			primaryColorHex = parseInt(
-				styles.getPropertyValue('--color-primary').trim().substring(1),
-				16
-			);
-			const primaryContainerStr = styles.getPropertyValue('--color-primary-container').trim();
-			primaryContainerColorHex = parseInt(primaryContainerStr.substring(1), 16);
+			updateColorsFromCss(); // Initial color load
 
 			app = new Application();
 			await app.init({
@@ -276,15 +287,7 @@
 			backgroundContentContainer = new PixiContainer();
 			app.stage.addChild(backgroundContentContainer);
 
-			const currentSeed = getEffectiveSeed();
-			const seededRandom = seedrandom(currentSeed);
-			generateRandomHexagons(
-				seededRandom,
-				window.innerWidth,
-				window.innerHeight * BACKGROUND_HEIGHT_MULTIPLIER,
-				biasPointForTypical
-			);
-			backgroundContentContainer.y = -(window.innerHeight * (BACKGROUND_HEIGHT_MULTIPLIER - 1)) / 2;
+			regenerateHexagons(); // Initial hexagon generation
 
 			// ++ USE the debounced handler in the observer
 			resizeObserver = new ResizeObserver(debouncedResizeHandler);
@@ -292,6 +295,9 @@
 
 			window.addEventListener('scroll', handleScroll, { passive: true });
 			handleScroll();
+
+			// Listen for custom theme change event
+			document.body.addEventListener('themeChanged', regenerateHexagons);
 		}
 	});
 
@@ -299,7 +305,10 @@
 		if (resizeObserver && document.body) {
 			resizeObserver.unobserve(document.body);
 		}
-		if (browser) window.removeEventListener('scroll', handleScroll);
+		if (browser) {
+			window.removeEventListener('scroll', handleScroll);
+			document.body.removeEventListener('themeChanged', regenerateHexagons);
+		}
 		if (app) {
 			app.destroy(true, { children: true, texture: true });
 		}
