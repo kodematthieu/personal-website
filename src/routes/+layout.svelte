@@ -24,6 +24,7 @@
 
 			if (tapCount >= 5) {
 				document.body.classList.toggle('debug-mode');
+				document.body.dispatchEvent(new CustomEvent('themeChanged'));
 				const isDebugMode = document.body.classList.contains('debug-mode');
 				if (isDebugMode) {
 					console.log(
