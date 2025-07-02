@@ -141,7 +141,7 @@
 			text-shadow: 0 0 5px var(--color-primary);
 		}
 		50% {
-					text-shadow: 0 0 20px var(--color-primary-light);
+			text-shadow: 0 0 20px var(--color-primary-light);
 		}
 		100% {
 			text-shadow: 0 0 5px var(--color-primary);

@@ -36,13 +36,19 @@
 	const BACKGROUND_HEIGHT_MULTIPLIER = 1.5; // How much taller the background content is
 
 	let backgroundContentContainer: PixiContainer; // Pixi container for all hexagon Graphics objects
+	const hexPool: Graphics[] = []; // ++ OBJECT POOL for hexagon Graphics objects
+	const hexPointCache = new Map<number, number[]>(); // ++ CACHE for hexagon points
 
 	function getHexagonPoints(radius: number, centerX: number = 0, centerY: number = 0): number[] {
+		if (hexPointCache.has(radius)) {
+			return hexPointCache.get(radius)!;
+		}
 		const points: number[] = [];
 		for (let i = 0; i < 6; i++) {
 			const angle = (i / 6) * Math.PI * 2 - Math.PI / 2;
 			points.push(centerX + radius * Math.cos(angle), centerY + radius * Math.sin(angle));
 		}
+		hexPointCache.set(radius, points);
 		return points;
 	}
 
@@ -61,7 +67,7 @@
 			.fill({ color: primaryColorHex, alpha: uniformHexAlpha })
 			.stroke({ color: primaryContainerColorHex, width: 1.5 });
 
-		if (hasHole && displayRadius > HOLE_SUITABILITY_THRESHOLD) {
+				if (hasHole && displayRadius > HOLE_SUITABILITY_THRESHOLD) {
 			const innerRadius = displayRadius * holeRadiusRatio;
 			if (innerRadius > ABSOLUTE_MIN_RADIUS * 0.25) {
 				const innerCornerRadius = Math.max(1, innerRadius * 0.02);
@@ -72,7 +78,7 @@
 			}
 		}
 
-		if (browser && displayRadius > 1) {
+		if (displayRadius > 1) {
 			const hitAreaPoints = getHexagonPoints(displayRadius - 0.5);
 			if (hitAreaPoints.length >= 6) {
 				graphics.hitArea = new Polygon(hitAreaPoints);
@@ -98,9 +104,10 @@
 		height: number,
 		typicalBiasPointPropValue: number
 	) {
-		if (!app || !browser || !backgroundContentContainer) return;
+		if (!app || !backgroundContentContainer) return;
 
-		backgroundContentContainer.removeChildren().forEach((child) => child.destroy());
+		// -- backgroundContentContainer.removeChildren().forEach((child) => child.destroy());
+		let activeHexes = 0; // ++ Track active hexagons
 
 		const potentialHexagons: PotentialHex[] = [];
 		hexIdCounter = 0;
@@ -192,8 +199,18 @@
 		}
 
 		for (const hexConfig of potentialHexagons) {
-			const tile = new Graphics();
-			backgroundContentContainer.addChild(tile);
+			// ++ OBJECT POOLING LOGIC
+			let tile: Graphics;
+			if (activeHexes < hexPool.length) {
+				tile = hexPool[activeHexes];
+			} else {
+				tile = new Graphics();
+				hexPool.push(tile); // Add new graphic to the pool
+				backgroundContentContainer.addChild(tile);
+			}
+			tile.visible = true;
+			activeHexes++;
+			// -- END POOLING LOGIC
 
 			let actualAttemptHole = hexConfig.forceHole
 				? true
@@ -204,22 +221,24 @@
 			createHexTile(randomFunc, tile, hexConfig.displayRadius, actualAttemptHole, holeRatio);
 			tile.position.set(hexConfig.x, hexConfig.y);
 		}
+
+		// ++ Hide unused hexagons from the pool
+		for (let i = activeHexes; i < hexPool.length; i++) {
+			hexPool[i].visible = false;
+		}
 	}
 
 	function getEffectiveSeed(): string {
 		if (seed) {
 			return seed;
 		}
-		if (browser) {
-			const seedKey = 'hexagonBackgroundSeed_v2';
-			let sessionSeed = sessionStorage.getItem(seedKey);
-			if (!sessionSeed) {
-				sessionSeed = Date.now().toString() + Math.random().toString();
-				sessionStorage.setItem(seedKey, sessionSeed);
-			}
-			return sessionSeed;
+		const seedKey = 'hexagonBackgroundSeed_v2';
+		let sessionSeed = sessionStorage.getItem(seedKey);
+		if (!sessionSeed) {
+			sessionSeed = Date.now().toString() + Math.random().toString();
+			sessionStorage.setItem(seedKey, sessionSeed);
 		}
-		return 'default-seed-v2';
+		return sessionSeed;
 	}
 
 	function handleScroll() {
@@ -234,13 +253,9 @@
 			styles.getPropertyValue('--color-background').trim().substring(1),
 			16
 		);
-		primaryColorHex = parseInt(
-			styles.getPropertyValue('--color-primary').trim().substring(1),
-			16
-		);
+		primaryColorHex = parseInt(styles.getPropertyValue('--color-primary').trim().substring(1), 16);
 		const primaryContainerStr = styles.getPropertyValue('--color-primary-container').trim();
 		primaryContainerColorHex = parseInt(primaryContainerStr.substring(1), 16);
-		
 	}
 
 	function regenerateHexagons() {
@@ -267,7 +282,7 @@
 	}
 
 	onMount(async () => {
-		if (browser && hostElement) {
+		if (hostElement) {
 			// ++ CREATE debounced handler instance with a 250ms wait time
 			debouncedResizeHandler = debounce(handleResize, 250);
 

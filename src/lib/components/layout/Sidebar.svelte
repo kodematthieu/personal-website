@@ -159,42 +159,4 @@
 	.close-button:hover {
 		color: var(--color-text-light);
 	}
-
-	/* MODIFICATION: Styles for the new footer and toggle button */
-	.sidebar-footer {
-		padding-top: 2rem;
-		border-top: 1px solid var(--color-outline);
-	}
-
-	.state-toggle-button {
-		width: 100%;
-		background-color: transparent;
-		border: 1px solid var(--color-outline);
-		color: var(--color-text-dim);
-		padding: 0.75rem 1rem;
-		font-family: 'Space Mono', monospace;
-		font-size: 1rem;
-		border-radius: var(--border-radius-sharp);
-		cursor: pointer;
-		transition: all 0.3s ease;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.75rem;
-	}
-
-	.state-toggle-button:hover {
-		border-color: var(--color-primary);
-		background-color: rgba(var(--color-primary-rgb), 0.1);
-		color: var(--color-text-light);
-	}
-
-	:global(body.debug-mode) .state-toggle-button {
-		border-color: var(--color-core-red);
-		color: var(--color-core-red);
-	}
-	:global(body.debug-mode) .state-toggle-button:hover {
-		background-color: rgba(var(--color-core-red), 0.1);
-		color: var(--color-core-red);
-	}
 </style>
