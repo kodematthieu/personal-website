@@ -67,7 +67,7 @@
 			.fill({ color: primaryColorHex, alpha: uniformHexAlpha })
 			.stroke({ color: primaryContainerColorHex, width: 1.5 });
 
-				if (hasHole && displayRadius > HOLE_SUITABILITY_THRESHOLD) {
+		if (hasHole && displayRadius > HOLE_SUITABILITY_THRESHOLD) {
 			const innerRadius = displayRadius * holeRadiusRatio;
 			if (innerRadius > ABSOLUTE_MIN_RADIUS * 0.25) {
 				const innerCornerRadius = Math.max(1, innerRadius * 0.02);

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Icon from '@iconify/svelte';
 </script>
@@ -10,9 +10,9 @@
 			<Icon icon="lucide:shield-alert" />
 		</div>
 
-		{#if $page.status === 404}
+		{#if page.status === 404}
 			<h1 class="error-headline-major">SEGMENTATION FAULT: CORE DUMPED</h1>
-			<p class="error-status-code">ERROR CODE: [{$page.status}]</p>
+			<p class="error-status-code">ERROR CODE: [{page.status}]</p>
 			<p class="error-description">
 				You have attempted to access a memory address outside the allocated segments of this domain.
 				The requested construct does not exist in the system's memory map. A record of this access
@@ -21,13 +21,13 @@
 		{:else}
 			<!-- Fallback for other server errors (e.g., 500) -->
 			<h1 class="error-headline-major">SYSTEM PANIC: UNHANDLED EXCEPTION</h1>
-			<p class="error-status-code">ERROR CODE: [{$page.status}]</p>
+			<p class="error-status-code">ERROR CODE: [{page.status}]</p>
 			<p class="error-description">
 				A critical, unrecoverable error was encountered in the system kernel. The process has been
 				terminated to ensure system integrity. The error has been logged for analysis by the
 				Architect.
 			</p>
-			<p class="error-message">{$page.error?.message}</p>
+			<p class="error-message">{page.error?.message}</p>
 		{/if}
 
 		<div class="error-cta">

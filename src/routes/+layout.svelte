@@ -60,5 +60,15 @@
 </script>
 
 <ParaglideJS {i18n}>
-	{@render children()}
+	<div class="app-container">
+		{@render children()}
+	</div>
 </ParaglideJS>
+
+<style>
+	.app-container {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+</style>
