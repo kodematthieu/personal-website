@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { env } from '$env/dynamic/private';
 import { z } from 'zod';
 import DOMPurify from 'isomorphic-dompurify';
+import type { Actions } from './$types';
 
 // Initialize Resend with the API key from our environment variables
 const resend = new Resend(env.RESEND_API_KEY);
@@ -74,4 +75,4 @@ export const actions = {
 			});
 		}
 	}
-};
+} satisfies Actions;
