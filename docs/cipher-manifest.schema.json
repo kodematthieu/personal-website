@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Construct Manifest v0.1.0",
+  "description": "A schema for the v0.1.0 specification of a Construct's service contract with the Hypervisor, following Semantic Versioning.",
+  "type": "object",
+  "required": [
+    "manifestVersion",
+    "title"
+  ],
+  "properties": {
+    "manifestVersion": {
+      "description": "The Semantic Version (SemVer) of the manifest schema. It must adhere to the SemVer 2.0.0 format. For this specific schema, the value must be '0.1.0'.",
+      "type": "string",
+      "const": "0.1.0",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "title": {
+      "description": "The human-readable title of the Construct, used by the Hypervisor for UI purposes.",
+      "type": "string",
+      "minLength": 1
+    },
+    "entrypoint": {
+      "description": "The relative path to the main HTML file within the application bundle. Defaults to './index.html' if not specified.",
+      "type": "string",
+      "pattern": "^\\./.*\\.html$",
+      "default": "./index.html"
+    },
+    "auth": {
+      "description": "Defines the authentication level. If omitted, the construct is treated as public.",
+      "type": "object",
+      "properties": {
+        "level": {
+          "description": "Access level for the construct.",
+          "type": "string",
+          "enum": [
+            "public",
+            "private"
+          ]
+        }
+      },
+      "required": [
+        "level"
+      ],
+      "additionalProperties": false,
+      "default": {
+        "level": "public"
+      }
+    },
+    "services": {
+      "description": "Reserved for future service definitions. For v0.1.0, this must be an empty object if present.",
+      "type": "object",
+      "additionalProperties": false,
+      "default": {}
+    }
+  },
+  "additionalProperties": false
+}

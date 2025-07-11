@@ -43,10 +43,10 @@ A Construct is deployed as a `.zip` archive. This archive represents a self-cont
 
 The root of the `.zip` archive must contain:
 
-1.  **`construct.manifest.json`**: The mandatory service contract file.
+1.  **`cipher-manifest.json`**: The mandatory service contract file.
 2.  **Application Bundle**: The static output of a framework's build process (e.g., a `dist` or `build` folder). All asset paths within this bundle **must be relative** (e.g., `./assets/app.js`).
 
-### 3.2. The Construct Manifest (`construct.manifest.json`)
+### 3.2. The Construct Manifest (`cipher-manifest.json`)
 
 This file defines the Construct's properties and resource requirements.
 
