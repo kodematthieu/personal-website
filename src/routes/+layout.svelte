@@ -1,7 +1,5 @@
 <!-- src/routes/+layout.svelte -->
 <script lang="ts">
-	import { i18n } from '$lib/i18n';
-	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 	import '../app.css'; // Imports truly global styles and theme variables
 	import { onMount } from 'svelte';
 
@@ -35,7 +33,7 @@
 				if (isDebugMode) {
 					console.log(
 						'%c:: DEBUG MODE ACTIVATED (3-TAP EASTER EGG) ::',
-						'color: #ff0033; font-weight: bold; text-shadow: 0 0 5px #ff0033;'
+						'color: #ff0033; font-weight: bold; text-shadow: 0 0 5px #ff0033;',
 					);
 				} else {
 					console.log('%c:: DEBUG MODE DEACTIVATED ::', 'color: #9d00ff; font-weight: bold;');
@@ -59,11 +57,9 @@
 	});
 </script>
 
-<ParaglideJS {i18n}>
-	<div class="app-container">
-		{@render children()}
-	</div>
-</ParaglideJS>
+<div class="app-container">
+	{@render children()}
+</div>
 
 <style>
 	.app-container {

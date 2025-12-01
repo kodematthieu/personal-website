@@ -57,7 +57,7 @@
 		graphics: Graphics,
 		displayRadius: number,
 		hasHole: boolean,
-		holeRadiusRatio: number
+		holeRadiusRatio: number,
 	) {
 		graphics.clear();
 		const outerCornerRadius = Math.max(1, displayRadius * 0.02);
@@ -102,7 +102,7 @@
 		randomFunc: () => number,
 		width: number,
 		height: number,
-		typicalBiasPointPropValue: number
+		typicalBiasPointPropValue: number,
 	) {
 		if (!app || !backgroundContentContainer) return;
 
@@ -130,7 +130,7 @@
 
 		const clampedTypicalBias = Math.max(
 			ABSOLUTE_MIN_RADIUS,
-			Math.min(typicalBiasPointPropValue, TYPICAL_RANGE_MAX)
+			Math.min(typicalBiasPointPropValue, TYPICAL_RANGE_MAX),
 		);
 		const maxOffsetAmount = effectiveCellRadius * RANDOM_OFFSET_FACTOR;
 
@@ -159,7 +159,7 @@
 						}
 						currentDisplayRadius = Math.max(
 							ABSOLUTE_MIN_RADIUS,
-							Math.min(currentDisplayRadius, TYPICAL_RANGE_MAX)
+							Math.min(currentDisplayRadius, TYPICAL_RANGE_MAX),
 						);
 					}
 					currentDisplayRadius = Math.max(ABSOLUTE_MIN_RADIUS, currentDisplayRadius);
@@ -173,7 +173,7 @@
 						x: startX + gx + randomOffsetX,
 						y: startY + gy + randomOffsetY,
 						displayRadius: currentDisplayRadius,
-						isBig: isBigHex
+						isBig: isBigHex,
 					});
 				}
 			}
@@ -182,13 +182,16 @@
 		if (potentialHexagons.length > 0) {
 			for (let i = potentialHexagons.length - 1; i > 0; i--) {
 				const j = Math.floor(randomFunc() * (i + 1));
-				[potentialHexagons[i], potentialHexagons[j]] = [potentialHexagons[j], potentialHexagons[i]];
+				[potentialHexagons[i], potentialHexagons[j]] = [
+					potentialHexagons[j]!,
+					potentialHexagons[i]!,
+				];
 			}
-			potentialHexagons[0].forceNoHole = true;
+			potentialHexagons[0]!.forceNoHole = true;
 			if (potentialHexagons.length > 1) {
 				for (const hex of potentialHexagons) {
 					if (
-						hex.id !== potentialHexagons[0].id &&
+						hex.id !== potentialHexagons[0]!.id &&
 						hex.displayRadius > HOLE_SUITABILITY_THRESHOLD
 					) {
 						hex.forceHole = true;
@@ -202,7 +205,7 @@
 			// ++ OBJECT POOLING LOGIC
 			let tile: Graphics;
 			if (activeHexes < hexPool.length) {
-				tile = hexPool[activeHexes];
+				tile = hexPool[activeHexes]!;
 			} else {
 				tile = new Graphics();
 				hexPool.push(tile); // Add new graphic to the pool
@@ -224,7 +227,7 @@
 
 		// ++ Hide unused hexagons from the pool
 		for (let i = activeHexes; i < hexPool.length; i++) {
-			hexPool[i].visible = false;
+			hexPool[i]!.visible = false;
 		}
 	}
 
@@ -251,7 +254,7 @@
 		const styles = getComputedStyle(document.body);
 		pageBackgroundColorHex = parseInt(
 			styles.getPropertyValue('--color-background').trim().substring(1),
-			16
+			16,
 		);
 		primaryColorHex = parseInt(styles.getPropertyValue('--color-primary').trim().substring(1), 16);
 		const primaryContainerStr = styles.getPropertyValue('--color-primary-container').trim();
@@ -267,7 +270,7 @@
 				seededRandom,
 				window.innerWidth,
 				window.innerHeight * BACKGROUND_HEIGHT_MULTIPLIER,
-				biasPointForTypical
+				biasPointForTypical,
 			);
 			backgroundContentContainer.y = -(window.innerHeight * (BACKGROUND_HEIGHT_MULTIPLIER - 1)) / 2;
 			handleScroll();
@@ -292,7 +295,7 @@
 			await app.init({
 				resizeTo: window,
 				antialias: true,
-				backgroundAlpha: 0
+				backgroundAlpha: 0,
 			});
 
 			if (!hostElement.contains(app.canvas)) {

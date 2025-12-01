@@ -5,7 +5,7 @@
 	let {
 		onToggle,
 		isSidebarOpen,
-		activeSectionId
+		activeSectionId,
 	}: { onToggle: () => void; isSidebarOpen: boolean; activeSectionId: string } = $props();
 </script>
 

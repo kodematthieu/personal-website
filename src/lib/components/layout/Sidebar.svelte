@@ -6,7 +6,7 @@
 	let {
 		isOpen,
 		onClose,
-		activeSectionId
+		activeSectionId,
 	}: { isOpen: boolean; onClose: () => void; activeSectionId: string } = $props();
 </script>
 

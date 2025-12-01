@@ -10,7 +10,7 @@
 		'systems architect',
 		'engineer of ideas',
 		'logic solver',
-		'conceptual thinker'
+		'conceptual thinker',
 	];
 
 	onMount(() => {
@@ -24,7 +24,7 @@
 				backDelay: 2800,
 				loop: true,
 				showCursor: true,
-				cursorChar: '_'
+				cursorChar: '_',
 			});
 		}
 	});

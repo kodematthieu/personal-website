@@ -26,7 +26,7 @@
 				const targetEl = document.querySelector(this.getAttribute('href')!);
 				if (targetEl) {
 					targetEl.scrollIntoView({
-						behavior: 'smooth'
+						behavior: 'smooth',
 					});
 				}
 			});
@@ -37,7 +37,7 @@
 		const observerOptions = {
 			root: null, // observes intersections relative to the viewport
 			rootMargin: '-50% 0px -50% 0px', // Triggers when the section is in the vertical center
-			threshold: 0 // Triggers as soon as any part of the target is visible within the rootMargin
+			threshold: 0, // Triggers as soon as any part of the target is visible within the rootMargin
 		};
 
 		observer = new IntersectionObserver((entries) => {

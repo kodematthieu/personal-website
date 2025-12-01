@@ -1,6 +1,6 @@
 # Systematic Synthesis
 
-This project is the digital portfolio for Matthieu Kodama, developed with SvelteKit and managed by Bun.
+This project is the digital portfolio for Karel Matthieu Logro, developed with SvelteKit and managed by Bun.
 
 ## Creating a project
 

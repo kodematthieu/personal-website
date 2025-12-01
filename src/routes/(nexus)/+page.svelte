@@ -10,7 +10,7 @@
 	// In the future, this data could come from a CMS or an API fetch.
 	const introductoryText = [
 		'I am a software engineering student and a systems thinker, driven by a deep curiosity for how reality truly functions and a desire to create something new. My approach centers on dissecting complex concepts down to their fundamental principles, whether in physics, mathematics, or code.',
-		'I focus on building and optimizing within consistent, rule-based systems, always seeking clarity and efficiency in design. Understanding underlying principles is paramount, as "control is the closest I\'ll ever have towards absolute freedom", allowing logic to shape environments and automate possibilities.'
+		'I focus on building and optimizing within consistent, rule-based systems, always seeking clarity and efficiency in design. Understanding underlying principles is paramount, as "control is the closest I\'ll ever have towards absolute freedom", allowing logic to shape environments and automate possibilities.',
 	];
 	const crystallineLogicSkills: string[] = [
 		'Systems Programming',
@@ -19,7 +19,7 @@
 		'Logical Soundness & Determinism',
 		'Resource Efficiency',
 		'Elegant & Maintainable Abstractions',
-		'Foundational Python Engineering'
+		'Foundational Python Engineering',
 	];
 
 	const etherealCreativitySkills: string[] = [
@@ -29,7 +29,7 @@
 		'Conceptual Compression',
 		'Pragmatic & Purposeful Rule-Breaking',
 		'Mathematical & Logical Rigor',
-		'Strategic Autonomy'
+		'Strategic Autonomy',
 	];
 
 	const allProjects: Project[] = [

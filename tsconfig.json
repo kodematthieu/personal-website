@@ -1,16 +1,37 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
-		"allowJs": true,
-		"checkJs": true,
+		// Environment setup & latest features
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleDetection": "force",
+		"allowJs": false,
+		"checkJs": false,
+
+		// Bundler mode
+		"moduleResolution": "bundler",
+		"verbatimModuleSyntax": true,
+
+		// SvelteKit essentials
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
+
+		// Best practices & strict mode
 		"strict": true,
-		"moduleResolution": "bundler"
-	}
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+
+		// Stricter flags (disabled for flexibility)
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noPropertyAccessFromIndexSignature": false
+	},
+	"types": ["bun"]
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
 	//

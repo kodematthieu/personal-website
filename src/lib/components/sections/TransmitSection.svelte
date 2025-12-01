@@ -11,7 +11,7 @@
 	let formErrors = {
 		name: '',
 		email: '',
-		message: ''
+		message: '',
 	};
 </script>
 
@@ -40,7 +40,7 @@
 					// Update the general error banner
 					formResult = {
 						type: 'failure',
-						message: data?.error ?? 'Please correct the highlighted errors and try again.'
+						message: data?.error ?? 'Please correct the highlighted errors and try again.',
 					};
 				} else if (result.type === 'success') {
 					const data = result.data as { message?: string };
@@ -48,13 +48,13 @@
 						type: 'success',
 						message:
 							data.message ??
-							'Signal Transmitted successfully. The Architect will respond when the network is clear.'
+							'Signal Transmitted successfully. The Architect will respond when the network is clear.',
 					};
 					form.reset();
 				} else if (result.type === 'error') {
 					formResult = {
 						type: 'failure',
-						message: `An unexpected server error occurred: ${result.error?.message || 'Unknown error.'}`
+						message: `An unexpected server error occurred: ${result.error?.message || 'Unknown error.'}`,
 					};
 					console.error('Server action error:', result.error);
 				}

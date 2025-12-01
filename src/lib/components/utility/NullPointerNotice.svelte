@@ -5,7 +5,7 @@
 	let {
 		featureName = 'Module',
 		returnHref = '/',
-		returnLabel = '// Return to Nexus //'
+		returnLabel = '// Return to Nexus //',
 	} = $props<{
 		featureName?: string;
 		returnHref?: string;

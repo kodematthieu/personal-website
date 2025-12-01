@@ -8,5 +8,5 @@ export const navigationLinks: NavLink[] = [
 	{ href: '#architect', label: '~ The Architect' },
 	{ href: '#disciplines', label: '~ Disciplines' },
 	{ href: '#constructs', label: '~ Constructs' },
-	{ href: '#transmit', label: '~ Transmit' }
+	{ href: '#transmit', label: '~ Transmit' },
 ];

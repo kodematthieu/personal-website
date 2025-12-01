@@ -12,7 +12,7 @@ const resend = new Resend(env.RESEND_API_KEY);
 const ContactFormSchema = z.object({
 	name: z.string().trim().min(1, { message: 'Name is required.' }),
 	email: z.string().email({ message: 'A valid email address is required.' }),
-	message: z.string().trim().min(1, { message: 'Message is required.' })
+	message: z.string().trim().min(1, { message: 'Message is required.' }),
 });
 
 export const actions = {
@@ -30,11 +30,11 @@ export const actions = {
 				errors: {
 					name: errors.name?.[0],
 					email: errors.email?.[0],
-					message: errors.message?.[0]
+					message: errors.message?.[0],
 				},
 				name: formFields.name,
 				email: formFields.email,
-				message: formFields.message
+				message: formFields.message,
 			});
 		}
 
@@ -43,7 +43,7 @@ export const actions = {
 		// Sanitize the message, preserving line breaks by converting them to <br> tags
 		// and allowing only <br> tags through the sanitizer.
 		const sanitizedMessage = DOMPurify.sanitize(message.replace(/\n/g, '<br>'), {
-			ALLOWED_TAGS: ['br']
+			ALLOWED_TAGS: ['br'],
 		});
 
 		// Sanitize the name to remove any potential HTML.
@@ -53,25 +53,25 @@ export const actions = {
 			await resend.emails.send({
 				from: 'Domain Architect <onboarding@resend.dev>',
 				replyTo: email,
-				to: env.MY_EMAIL,
+				to: env.MY_EMAIL!,
 				// Use the sanitized name in the subject line.
 				subject: `New Signal from The Synthesis Engine: ${sanitizedName}`,
 				html: `
                     <p><strong>From:</strong> ${sanitizedName} (${email})</p>
                     <p><strong>Message:</strong></p>
                     <p>${sanitizedMessage}</p>
-                `
+                `,
 			});
 
 			return {
 				success: true,
-				message: 'Signal Transmitted. The Architect will respond when the network is clear.'
+				message: 'Signal Transmitted. The Architect will respond when the network is clear.',
 			};
 		} catch (error) {
 			console.error('Error sending email:', error);
 			return fail(500, {
-				error: 'Could not transmit the signal. Please try again later.'
+				error: 'Could not transmit the signal. Please try again later.',
 			});
 		}
-	}
+	},
 };

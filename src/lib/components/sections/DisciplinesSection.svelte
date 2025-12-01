@@ -2,7 +2,7 @@
 	// This section displays the two categories of skills.
 	let {
 		crystallineSkills,
-		etherealSkills
+		etherealSkills,
 	}: {
 		crystallineSkills: string[];
 		etherealSkills: string[];

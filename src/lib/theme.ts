@@ -18,7 +18,7 @@ export function toggleTheme() {
 	if (!isDebug) {
 		console.log(
 			'%c:: FLOW STATE ENGAGED ::',
-			'color: #ff0033; font-weight: bold; text-shadow: 0 0 5px #ff0033;'
+			'color: #ff0033; font-weight: bold; text-shadow: 0 0 5px #ff0033;',
 		);
 	} else {
 		console.log('%c:: ANALYSIS MODE RESUMED ::', 'color: #9d00ff; font-weight: bold;');

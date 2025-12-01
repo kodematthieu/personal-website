@@ -56,7 +56,7 @@
 		rawHeader,
 		header,
 		footer,
-		children
+		children,
 	}: HighlightCardProps = $props();
 
 	const isStructuredContent = $derived(title !== undefined && details !== undefined);

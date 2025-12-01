@@ -44,9 +44,9 @@ export default {
 				'core-red': 'var(--color-core-red)',
 				'core-black': 'var(--color-core-black)',
 				'core-dark-bg': 'var(--color-core-dark-bg)',
-				'core-dark-red': 'var(--color-core-dark-red)'
-			}
-		}
+				'core-dark-red': 'var(--color-core-dark-red)',
+			},
+		},
 	},
-	plugins: [typography, forms, containerQueries]
+	plugins: [typography, forms, containerQueries],
 } satisfies Config;
