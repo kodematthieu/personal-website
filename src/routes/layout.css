@@ -2,6 +2,18 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@font-face {
+	font-family: 'Ethnocentric';
+	src: url('../lib/assets/fonts/Ethnocentric-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+.font-ethnocentric {
+	font-family: 'Ethnocentric', sans-serif;
+}
+
 :root {
 	/* --- PALETTES (Source of Truth) --- */
 	/* --- SEMANTIC MAPPINGS (Default Theme) --- */
@@ -13,8 +25,10 @@
 	--color-primary-container: #4d2db7;
 	--color-on-primary-container: #ffffff;
 
-	--color-secondary: #38b2ac;
-	--color-secondary-rgb: 56, 178, 172;
+	--color-secondary: #4c51bf;
+	--color-secondary-rgb: 76, 81, 191;
+	--color-secondary-light: #6366f1;
+	--color-secondary-light-rgb: 99, 102, 24;
 	--color-on-secondary: #ffffff;
 	--color-secondary-container: #38b2ac;
 	--color-on-secondary-container: #ffffff;
