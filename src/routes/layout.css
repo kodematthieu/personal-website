@@ -1,3 +1,49 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+:root {
+	/* --- PALETTES (Source of Truth) --- */
+	/* --- SEMANTIC MAPPINGS (Default Theme) --- */
+	--color-primary: #8338ec;
+	--color-primary-rgb: 131, 56, 236;
+	--color-primary-light: #9b51e0;
+	--color-primary-light-rgb: 155, 81, 224;
+	--color-on-primary: #ffffff;
+	--color-primary-container: #4d2db7;
+	--color-on-primary-container: #ffffff;
+
+	--color-secondary: #38b2ac;
+	--color-secondary-rgb: 56, 178, 172;
+	--color-on-secondary: #ffffff;
+	--color-secondary-container: #38b2ac;
+	--color-on-secondary-container: #ffffff;
+
+	--color-background: #080510;
+	--color-background-rgb: 8, 5, 16;
+	--color-on-background: #e2e8f0;
+	--color-surface: #0e0c18;
+	--color-on-surface: #e2e8f0;
+	--color-surface-variant: #0e0c18;
+	--color-on-surface-variant: #a0aec0;
+
+	--color-text-primary: #e2e8f0;
+	--color-text-dim: #a0aec0;
+	--color-text-secondary: #a0aec0;
+
+	--color-error: #e53e3e;
+	--color-error-rgb: 229, 62, 62;
+	--color-error-container: #c53030;
+	--color-on-error: #e2e8f0;
+	--color-on-error-container: #e2e8f0;
+
+	--color-outline: rgba(var(--color-primary-rgb), 0.2);
+	--color-shadow: #000000;
+
+	/* --- GEOMETRY --- */
+	--border-radius-sharp: 4px;
+}
+
+body {
+	background-color: var(--color-background);
+}
