@@ -1,8 +1,8 @@
-<script lang="ts">
-	import FlipCard from './FlipCard.svelte';
+<script module lang="ts">
 	import erudition from '$lib/assets/images/erudition.png';
 	import elation from '$lib/assets/images/elation.png';
 	import nihility from '$lib/assets/images/nihility.png';
+	import enigmata from '$lib/assets/images/enigmata.png';
 
 	export const PATH_DATA = {
 		erudition: {
@@ -17,20 +17,28 @@
 			src: nihility,
 			alt: 'Nihility HSR',
 		},
+		enigmata: {
+			src: enigmata,
+			alt: 'Enigmata HSR',
+		},
 	} as const;
 
-	type PathType = keyof typeof PATH_DATA;
+	export type PathType = keyof typeof PATH_DATA;
 
-	interface Props {
-		title: string;
+	export interface Props {
+		name: string;
 		rating?: number;
 		path: PathType;
 		description?: string;
 		children?: import('svelte').Snippet;
 		footer?: import('svelte').Snippet;
 	}
+</script>
 
-	let { title, rating, path, description, children, footer }: Props = $props();
+<script lang="ts">
+	import FlipCard from './FlipCard.svelte';
+
+	let { name, rating, path, description, children, footer }: Props = $props();
 
 	const pathInfo = $derived(PATH_DATA[path]);
 </script>
@@ -40,7 +48,7 @@
 		<!-- Header Block -->
 		<div class="flex justify-between items-center w-full gap-2">
 			<div class="text-left flex-1">
-				<h3 class="text-sm font-ethnocentric text-white tracking-wider leading-none">{title}</h3>
+				<h3 class="text-sm font-ethnocentric text-white tracking-wider leading-none">{name}</h3>
 				<!-- Rate Bar (1-10 scale mapped to 5 segments) -->
 				{#if rating !== undefined}
 					<div class="flex gap-1 mt-2.5">
