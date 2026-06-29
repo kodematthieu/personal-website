@@ -119,8 +119,10 @@
 	}
 
 	/* Hover pickup */
-	.card-viewport:hover .card-rotator {
-		animation: card-pickup 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+	@media (hover: hover) {
+		.card-viewport:hover .card-rotator {
+			animation: card-pickup 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+		}
 	}
 
 	/* 3. Card Faces */
@@ -144,8 +146,10 @@
 	}
 
 	/* Show trace on hover */
-	.card-viewport:hover .card-back::after {
-		opacity: 1;
+	@media (hover: hover) {
+		.card-viewport:hover .card-back::after {
+			opacity: 1;
+		}
 	}
 
 	.card-front {
@@ -197,18 +201,20 @@
 	}
 
 	/* Hover glow */
-	.card-viewport:hover .card-front {
-		border-color: rgba(var(--color-primary-rgb), 0.3);
-		box-shadow:
-			0 14px 30px -5px rgba(0, 0, 0, 0.35),
-			0 0 20px -4px rgba(var(--color-primary-rgb), 0.2);
-	}
+	@media (hover: hover) {
+		.card-viewport:hover .card-front {
+			border-color: rgba(var(--color-primary-rgb), 0.3);
+			box-shadow:
+				0 14px 30px -5px rgba(0, 0, 0, 0.35),
+				0 0 20px -4px rgba(var(--color-primary-rgb), 0.2);
+		}
 
-	.card-viewport:hover .card-back {
-		border-color: rgba(var(--color-primary-rgb), 0.6);
-		box-shadow:
-			0 14px 30px -5px rgba(0, 0, 0, 0.35),
-			0 0 20px -4px rgba(var(--color-primary-rgb), 0.25);
+		.card-viewport:hover .card-back {
+			border-color: rgba(var(--color-primary-rgb), 0.6);
+			box-shadow:
+				0 14px 30px -5px rgba(0, 0, 0, 0.35),
+				0 0 20px -4px rgba(var(--color-primary-rgb), 0.25);
+		}
 	}
 
 	.pattern-back {
